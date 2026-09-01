@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>OMP Maintenance - Historique</title>
+
+    <link rel="stylesheet" href="historique.css">
+
+</head>
+
+
+<body>
+
+
+<div class="layout">
+
+    <aside class="sidebar">
+
+        <h2>GESTION</h2>
+
+        <nav>
+
+            <a href="dashboard.html" class="menu">
+                Dashboard
+            </a>
+
+            <a href="workorder.html" class="menu">
+                Work Orders
+            </a>
+
+            <a href="equipements.html" class="menu">
+                Équipements
+            </a>
+
+            <a href="technicien.html" class="menu">
+                Techniciens
+            </a>
+
+            <a href="pieces.html" class="menu">
+                Pièces
+            </a>
+
+            <a href="pannes.html" class="menu">
+                Pannes
+            </a>
+
+            <a href="historique.html" class="menu active">
+                Historique
+            </a>
+
+            <a href="parametres.html" class="menu">
+                Paramètres
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <main>
+
+
+        <div class="page-header">
+
+            <div>
+
+                <h1>
+                    Historique
+                </h1>
+
+                <p>
+                    Historique des opérations de maintenance
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <section class="stats">
+
+
+            <div class="card">
+
+                <h3>
+                    Total interventions
+                </h3>
+
+                <div class="number">
+                    42
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    Maintenance préventive
+                </h3>
+
+                <div class="number">
+                    25
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    Maintenance corrective
+                </h3>
+
+                <div class="number">
+                    17
+                </div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    Ce mois-ci
+                </h3>
+
+                <div class="number">
+                    8
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+      
+<div class="search-container">
+
+    <div class="search-box">
+
+        <span class="search-icon">🔍</span>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Rechercher..."
+            onkeyup="rechercher()">
+
+    </div>
+
+</div>
+
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>
+                                Date
+                            </th>
+                            <th>
+                                Work Order
+                            </th>
+                            <th>
+                                Équipement
+                            </th>
+                            <th>
+                                Technicien
+                            </th>
+                            <th>
+                                Type
+                            </th>
+                            <th>
+                                Intervention
+                            </th>
+                            <th>
+                                Statut
+                            </th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+
+
+                        <!-- INTERVENTION 1 -->
+
+                        <tr>
+                            <td>
+                                28/08/2026
+                            </td>
+                            <td>
+                                <a
+                                    href="workorder_historique.html?id=1"
+                                    class="link">
+                                    WO-001
+                                </a>
+                            </td>
+                            <td>
+                                <a
+                                    href="equipement_historique.html?id=1"
+                                    class="link">
+                                    CAT320
+                                </a>
+                            </td>
+                            <td>
+                                <a
+                                    href="technicien_historique.html?id=1"
+                                    class="link">
+                                    T001 - Ndong Jean
+                                </a>
+                            </td>
+                            <td>
+                                <span class="type preventive">
+                                    Préventive
+                                </span>
+                            </td>
+                            <td>
+                                Vidange moteur
+                            </td>
+                            <td>
+                                <span class="status finished">
+                                    Terminée
+                                </span>
+                            </td>
+                        </tr>
+                       <!-- INTERVENTION 2 -->
+                        <tr>
+                            <td>
+                                25/08/2026
+                            </td>
+                           <td>
+                                <a
+                                    href="workorder_historique.html?id=2"
+                                    class="link">
+                                    WO-002
+                                </a>
+                            </td>
+                           <td>
+                                <a
+                                    href="equipement_historique.html?id=2"
+                                    class="link">
+                                    TOY-HLX
+                                </a>
+                            </td>
+                          <td>
+                                <a
+                                    href="technicien_historique.html?id=2"
+                                    class="link">
+                                    T002 - Obame Paul
+                                </a>
+                            </td>
+                           <td>
+                                <span class="type corrective">
+                                    Corrective
+                                </span>
+                            </td>
+                           <td>
+                                Réparation des freins
+                            </td>
+                            <td>
+                                <span class="status finished">
+                                    Terminée
+                                </span>
+                            </td>
+                        </tr>
+                        <!-- INTERVENTION 3 -->
+                        <tr>
+                            <td>
+                                22/08/2026
+                            </td>
+                            <td>
+                                <a
+                                    href="workorder_historique.html?id=3"
+                                    class="link">
+
+                                    WO-003
+
+                                </a>
+
+                            </td>
+
+
+                            <td>
+
+                                <a
+                                    href="equipement_historique.html?id=3"
+                                    class="link">
+
+                                    VOL-A40
+
+                                </a>
+
+                            </td>
+
+
+                            <td>
+
+                                <a
+                                    href="technicien_historique.html?id=4"
+                                    class="link">
+
+                                    T004 - Mba David
+
+                                </a>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="type corrective">
+
+                                    Corrective
+
+                                </span>
+
+                            </td>
+
+
+                            <td>
+                                Réparation hydraulique
+                            </td>
+
+
+                            <td>
+
+                                <span class="status progress">
+
+                                    En cours
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <!-- INTERVENTION 4 -->
+
+                        <tr>
+
+                            <td>
+                                18/08/2026
+                            </td>
+
+
+                            <td>
+
+                                <a
+                                    href="workorder_historique.html?id=4"
+                                    class="link">
+
+                                    WO-004
+
+                                </a>
+
+                            </td>
+
+
+                            <td>
+
+                                <a
+                                    href="equipement_historique.html?id=1"
+                                    class="link">
+
+                                    CAT320
+
+                                </a>
+
+                            </td>
+
+
+                            <td>
+
+                                <a
+                                    href="technicien_historique.html?id=1"
+                                    class="link">
+
+                                    T001 - Ndong Jean
+
+                                </a>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="type preventive">
+
+                                    Préventive
+
+                                </span>
+
+                            </td>
+
+
+                            <td>
+                                Contrôle moteur
+                            </td>
+
+
+                            <td>
+
+                                <span class="status finished">
+
+                                    Terminée
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+
+                        <!-- INTERVENTION 5 -->
+
+                        <tr>
+
+                            <td>
+                                12/08/2026
+                            </td>
+
+
+                            <td>
+
+                                <a
+                                    href="workorder_historique.html?id=5"
+                                    class="link">
+
+                                    WO-005
+
+                                </a>
+
+                            </td>
+
+
+                            <td>
+
+                                <a
+                                    href="equipement_historique.html?id=2"
+                                    class="link">
+
+                                    TOY-HLX
+
+                                </a>
+
+                            </td>
+
+
+                            <td>
+
+                                <a
+                                    href="technicien_historique.html?id=3"
+                                    class="link">
+
+                                    T003 - Essono Michel
+
+                                </a>
+
+                            </td>
+
+
+                            <td>
+
+                                <span class="type preventive">
+
+                                    Préventive
+
+                                </span>
+
+                            </td>
+
+
+                            <td>
+                                Contrôle général
+                            </td>
+
+
+                            <td>
+
+                                <span class="status finished">
+
+                                    Terminée
+
+                                </span>
+
+                            </td>
+
+                        </tr>
+
+
+                    </tbody>
+
+
+                </table>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+</div>
+<script>
+
+function rechercher() {
+
+    const input = document.getElementById("searchInput");
+
+    const recherche = input.value.toLowerCase();
+
+    const lignes = document.querySelectorAll("tbody tr");
+
+
+    lignes.forEach(function(ligne) {
+
+        const texte = ligne.textContent.toLowerCase();
+
+
+        if (texte.includes(recherche)) {
+
+            ligne.style.display = "";
+
+        } else {
+
+            ligne.style.display = "none";
+
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+
+</html>

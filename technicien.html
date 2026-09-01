@@ -1,0 +1,1639 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>OMP Maintenance - Techniciens</title>
+
+    <link rel="stylesheet"
+          href="technicien.css">
+
+</head>
+
+
+<body>
+
+
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+    <h2>GESTION</h2>
+
+    <nav>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="workorder.html">
+            Work Orders
+        </a>
+
+        <a href="equipements.html">
+            Équipements
+        </a>
+
+        <a href="technicien.html"
+           class="active">
+            Techniciens
+        </a>
+
+        <a href="pieces.html">
+            Pièces
+        </a>
+
+        <a href="pannes.html">
+            Pannes
+        </a>
+
+        <a href="historique.html">
+            Historique
+        </a>
+
+        <a href="parametres.html">
+            Paramètres
+        </a>
+
+    </nav>
+
+</aside>
+
+
+
+<!--CONTENU PRINCIPAL -->
+
+<main class="main-content">
+
+
+<!-- HEADER -->
+
+<header class="top-header">
+
+    <div class="logo">
+        OMP
+    </div>
+
+    <div class="header-title">
+
+        <h2>
+            Techniciens
+        </h2>
+
+        <p>
+            Maintenance
+        </p>
+
+    </div>
+
+    <div class="administrator">
+        Administrateur
+    </div>
+
+</header>
+
+
+
+<section class="page">
+
+
+<!--TITRE -->
+
+<div class="page-header">
+
+    <div>
+
+        <h1>
+            Techniciens
+        </h1>
+
+        <p>
+            Gestion et analyse des performances des techniciens
+        </p>
+
+    </div>
+
+
+    <div class="actions">
+
+        <a
+            href="historique.html"
+            class="btn-history">
+
+            Historique
+
+        </a>
+
+
+        <button
+            class="btn-add"
+            onclick="ouvrirFormulaire()">
+
+            + Nouveau technicien
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<div class="search-box">
+
+    <span>
+        🔎
+    </span>
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Rechercher par ID, nom, prénom ou spécialité...">
+
+</div>
+
+
+<div class="stats-grid">
+
+
+    <div class="stat-card">
+
+        <span>
+            Total techniciens
+        </span>
+
+        <strong id="totalTechniciens">
+            12
+        </strong>
+
+        <small>
+            Techniciens enregistrés
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            Disponibles
+        </span>
+
+        <strong
+            class="green"
+            id="totalDisponibles">
+
+            7
+
+        </strong>
+
+        <small>
+            Prêts à intervenir
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            En intervention
+        </span>
+
+        <strong
+            class="orange"
+            id="totalIntervention">
+
+            3
+
+        </strong>
+
+        <small>
+            Interventions en cours
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            Indisponibles
+        </span>
+
+        <strong
+            class="red"
+            id="totalIndisponibles">
+
+            2
+
+        </strong>
+
+        <small>
+            Non disponibles
+        </small>
+
+    </div>
+
+</div>
+
+
+
+<div class="charts-grid">
+
+<div class="chart-card">
+
+    <h2>
+        Disponibilité des techniciens
+    </h2>
+
+    <p>
+        Répartition selon le statut
+    </p>
+
+
+    <div class="donut-container">
+
+
+        <div class="donut">
+
+            <div class="donut-center">
+
+                <strong>
+                    12
+                </strong>
+
+                <span>
+                    techniciens
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="legend">
+
+
+            <div>
+
+                <span class="dot green-dot"></span>
+
+                Disponibles
+
+                <strong>
+                    7
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span class="dot orange-dot"></span>
+
+                En intervention
+
+                <strong>
+                    3
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span class="dot red-dot"></span>
+
+                Indisponibles
+
+                <strong>
+                    2
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="chart-card">
+
+    <h2>
+        Work Orders réalisés
+    </h2>
+
+    <p>
+        Nombre d'interventions par technicien
+    </p>
+
+
+    <div class="bar-chart">
+
+
+        <div class="bar-item">
+
+            <div class="bar-label">
+
+                <span>
+                    T001 - Ndong Jean
+                </span>
+
+                <strong>
+                    28
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar excellent"
+                    style="width:95%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="bar-item">
+
+            <div class="bar-label">
+
+                <span>
+                    T002 - Obame Paul
+                </span>
+
+                <strong>
+                    23
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar excellent"
+                    style="width:80%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="bar-item">
+
+            <div class="bar-label">
+
+                <span>
+                    T003 - Essono Michel
+                </span>
+
+                <strong>
+                    18
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar good"
+                    style="width:65%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="bar-item">
+
+            <div class="bar-label">
+
+                <span>
+                    T004 - Mba David
+                </span>
+
+                <strong>
+                    11
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar normal"
+                    style="width:40%">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<h2 class="section-title">
+
+    Analyse de performance
+
+</h2>
+
+
+
+<div class="performance-grid">
+
+
+
+
+<div class="performance-card">
+
+    <div class="performance-header">
+
+        <span class="icon green-icon">
+            ★
+        </span>
+
+        <div>
+
+            <h3>
+                Techniciens les plus performants
+            </h3>
+
+            <p>
+                Meilleur taux de réussite
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            1. Ndong Jean
+        </span>
+
+        <strong class="green">
+            96%
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            2. Obame Paul
+        </span>
+
+        <strong class="green">
+            93%
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            3. Essono Michel
+        </span>
+
+        <strong class="green">
+            89%
+        </strong>
+
+    </div>
+
+</div>
+
+
+<div class="performance-card">
+
+    <div class="performance-header">
+
+        <span class="icon blue-icon">
+            📈
+        </span>
+
+        <div>
+
+            <h3>
+                Techniciens les plus actifs
+            </h3>
+
+            <p>
+                Nombre de Work Orders
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            1. Ndong Jean
+        </span>
+
+        <strong>
+            28
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            2. Obame Paul
+        </span>
+
+        <strong>
+            23
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            3. Essono Michel
+        </span>
+
+        <strong>
+            18
+        </strong>
+
+    </div>
+
+</div>
+
+<div class="performance-card">
+
+    <div class="performance-header">
+
+        <span class="icon orange-icon">
+            🔧
+        </span>
+
+        <div>
+
+            <h3>
+                Spécialités dominantes
+            </h3>
+
+            <p>
+                Répartition des compétences
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            Mécanique
+        </span>
+
+        <strong>
+            5
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            Électricité
+        </span>
+
+        <strong>
+            3
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            Hydraulique
+        </span>
+
+        <strong>
+            2
+        </strong>
+
+    </div>
+
+</div>
+
+
+
+<div class="performance-card">
+
+    <div class="performance-header">
+
+        <span class="icon red-icon">
+            ⚠
+        </span>
+
+        <div>
+
+            <h3>
+                À surveiller
+            </h3>
+
+            <p>
+                Faible taux de réussite
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            Mba David
+        </span>
+
+        <strong class="red">
+            68%
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            T008
+        </span>
+
+        <strong class="red">
+            71%
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            T009
+        </span>
+
+        <strong class="orange">
+            74%
+        </strong>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+
+
+<div class="interpretation">
+
+
+    <div class="interpretation-header">
+
+        <span>
+            
+        </span>
+
+        <div>
+
+            <h2>
+                Interprétation des données
+            </h2>
+
+            <p>
+                Analyse automatique des performances
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="interpretation-grid">
+
+
+        <div class="interpretation-box">
+
+            <h3 class="green">
+                 Meilleur technicien
+            </h3>
+
+            <p>
+
+                <strong>Ndong Jean</strong> possède
+                actuellement le meilleur taux de
+                réussite avec <strong>96%</strong>.
+
+                Il a également réalisé
+                <strong>28 Work Orders</strong>,
+                ce qui démontre une forte activité
+                et une bonne efficacité.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3 class="orange">
+                 Technicien très sollicité
+            </h3>
+
+            <p>
+
+                <strong>Ndong Jean</strong> est le
+                technicien ayant réalisé le plus
+                d'interventions.
+
+                Une surveillance de sa charge de
+                travail permettrait d'éviter une
+                surcharge.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3 class="red">
+                 Technicien à améliorer
+            </h3>
+
+            <p>
+
+                <strong>Mba David</strong> présente
+                un taux de réussite de
+                <strong>68%</strong>.
+
+                Une analyse de ses interventions
+                pourrait permettre d'identifier
+                les difficultés rencontrées.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3>
+                📈 Analyse générale
+            </h3>
+
+            <p>
+
+                L'équipe possède une majorité de
+                techniciens disponibles.
+
+                Les compétences en
+                <strong>mécanique</strong> sont
+                les plus représentées.
+
+                Il est important de maintenir un
+                équilibre de charge entre les
+                techniciens.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<div class="table-card">
+
+
+    <div class="table-title">
+
+        <h2>
+            Liste des techniciens
+        </h2>
+
+        <p>
+            Suivi détaillé des techniciens
+        </p>
+
+    </div>
+
+
+    <div class="table-container">
+
+
+        <table>
+
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        ID
+                    </th>
+
+                    <th>
+                        Nom
+                    </th>
+
+                    <th>
+                        Prénom
+                    </th>
+
+                    <th>
+                        Spécialité
+                    </th>
+
+                    <th>
+                        Work Orders
+                    </th>
+
+                    <th>
+                        Taux réussite
+                    </th>
+
+                    <th>
+                        Statut
+                    </th>
+
+                    <th>
+                        Historique
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+
+            <tbody id="technicianTable">
+
+
+                <tr>
+
+                    <td>
+                        T001
+                    </td>
+
+                    <td>
+                        Ndong
+                    </td>
+
+                    <td>
+                        Jean
+                    </td>
+
+                    <td>
+                        Mécanique
+                    </td>
+
+                    <td>
+                        28
+                    </td>
+
+                    <td>
+
+                        <strong class="green">
+                            96%
+                        </strong>
+
+                    </td>
+
+                    <td>
+
+                        <span class="badge available">
+                            Disponible
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="historique.html"
+                            class="btn-view">
+
+                            Voir
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>
+                        T002
+                    </td>
+
+                    <td>
+                        Obame
+                    </td>
+
+                    <td>
+                        Paul
+                    </td>
+
+                    <td>
+                        Hydraulique
+                    </td>
+
+                    <td>
+                        23
+                    </td>
+
+                    <td>
+
+                        <strong class="green">
+                            93%
+                        </strong>
+
+                    </td>
+
+                    <td>
+
+                        <span class="badge intervention">
+                            En intervention
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="historique.html"
+                            class="btn-view">
+
+                            Voir
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>
+                        T003
+                    </td>
+
+                    <td>
+                        Essono
+                    </td>
+
+                    <td>
+                        Michel
+                    </td>
+
+                    <td>
+                        Électricité
+                    </td>
+
+                    <td>
+                        18
+                    </td>
+
+                    <td>
+
+                        <strong class="green">
+                            89%
+                        </strong>
+
+                    </td>
+
+                    <td>
+
+                        <span class="badge available">
+                            Disponible
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="historique.html"
+                            class="btn-view">
+
+                            Voir
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>
+                        T004
+                    </td>
+
+                    <td>
+                        Mba
+                    </td>
+
+                    <td>
+                        David
+                    </td>
+
+                    <td>
+                        Mécanique
+                    </td>
+
+                    <td>
+                        11
+                    </td>
+
+                    <td>
+
+                        <strong class="red">
+                            68%
+                        </strong>
+
+                    </td>
+
+                    <td>
+
+                        <span class="badge unavailable">
+                            Indisponible
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="historique.html"
+                            class="btn-view">
+
+                            Voir
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+</section>
+
+</main>
+
+
+
+<div
+    id="modalTechnicien"
+    class="modal">
+
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Nouveau technicien
+                </h2>
+
+                <p>
+                    Ajouter un technicien
+                </p>
+
+            </div>
+
+
+            <button
+                class="close-button"
+                onclick="fermerFormulaire()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+
+        <!-- FORMULAIRE -->
+
+        <form
+            id="technicianForm"
+            onsubmit="ajouterTechnicien(event)">
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        ID Technicien
+                    </label>
+
+                    <input
+                        id="technicianId"
+                        type="text"
+                        placeholder="Ex : T009"
+                        required>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Nom
+                    </label>
+
+                    <input
+                        id="technicianLastName"
+                        type="text"
+                        placeholder="Nom"
+                        required>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Prénom
+                    </label>
+
+                    <input
+                        id="technicianFirstName"
+                        type="text"
+                        placeholder="Prénom"
+                        required>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Spécialité
+                    </label>
+
+                    <select
+                        id="technicianSpeciality"
+                        required>
+
+                        <option value="">
+                            Sélectionner
+                        </option>
+
+                        <option>
+                            Mécanique
+                        </option>
+
+                        <option>
+                            Hydraulique
+                        </option>
+
+                        <option>
+                            Électricité
+                        </option>
+
+                        <option>
+                            Moteur
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Téléphone
+                    </label>
+
+                    <input
+                        type="tel"
+                        placeholder="06 00 00 00">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        placeholder="technicien@omp.ga">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Statut
+                    </label>
+
+                    <select id="technicianStatus">
+
+                        <option>
+                            Disponible
+                        </option>
+
+                        <option>
+                            En intervention
+                        </option>
+
+                        <option>
+                            Indisponible
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Date d'embauche
+                    </label>
+
+                    <input
+                        type="date">
+
+                </div>
+
+            </div>
+
+
+
+            <!-- BOUTONS -->
+
+            <div class="form-footer">
+
+                <button
+                    type="button"
+                    class="btn-cancel"
+                    onclick="fermerFormulaire()">
+
+                    Annuler
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-save">
+
+                    Enregistrer
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<script>
+
+function ouvrirFormulaire() {
+
+    document
+        .getElementById("modalTechnicien")
+        .classList.add("show");
+
+}
+
+
+function fermerFormulaire() {
+
+    document
+        .getElementById("modalTechnicien")
+        .classList.remove("show");
+
+}
+
+
+
+
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "input",
+        function() {
+
+
+            const recherche =
+                this.value.toLowerCase();
+
+
+            const lignes =
+                document.querySelectorAll(
+                    "#technicianTable tr"
+                );
+
+
+            lignes.forEach(
+                function(ligne) {
+
+
+                    const texte =
+                        ligne.textContent
+                            .toLowerCase();
+
+
+                    if (
+                        texte.includes(recherche)
+                    ) {
+
+                        ligne.style.display = "";
+
+                    }
+
+                    else {
+
+                        ligne.style.display = "none";
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+
+
+function ajouterTechnicien(event) {
+
+    event.preventDefault();
+
+
+    const id =
+        document.getElementById(
+            "technicianId"
+        ).value;
+
+
+    const nom =
+        document.getElementById(
+            "technicianLastName"
+        ).value;
+
+
+    const prenom =
+        document.getElementById(
+            "technicianFirstName"
+        ).value;
+
+
+    const specialite =
+        document.getElementById(
+            "technicianSpeciality"
+        ).value;
+
+
+    const statut =
+        document.getElementById(
+            "technicianStatus"
+        ).value;
+
+
+
+    let classeStatut =
+        "available";
+
+
+    if (
+        statut === "En intervention"
+    ) {
+
+        classeStatut =
+            "intervention";
+
+    }
+
+
+    if (
+        statut === "Indisponible"
+    ) {
+
+        classeStatut =
+            "unavailable";
+
+    }
+
+
+
+    const ligne =
+        document.createElement("tr");
+
+
+    ligne.innerHTML = `
+
+        <td>
+            ${id}
+        </td>
+
+        <td>
+            ${nom}
+        </td>
+
+        <td>
+            ${prenom}
+        </td>
+
+        <td>
+            ${specialite}
+        </td>
+
+        <td>
+            0
+        </td>
+
+        <td>
+            <strong>
+                100%
+            </strong>
+        </td>
+
+        <td>
+
+            <span
+                class="badge ${classeStatut}">
+
+                ${statut}
+
+            </span>
+
+        </td>
+
+        <td>
+
+            <a
+                href="historique.html"
+                class="btn-view">
+
+                Voir
+
+            </a>
+
+        </td>
+
+    `;
+
+
+    document
+        .getElementById(
+            "technicianTable"
+        )
+        .appendChild(ligne);
+
+
+
+    /* Mise à jour total */
+
+    const total =
+        document.querySelectorAll(
+            "#technicianTable tr"
+        ).length;
+
+
+    document
+        .getElementById(
+            "totalTechniciens"
+        )
+        .textContent = total;
+
+
+
+    /* Reset */
+
+    document
+        .getElementById(
+            "technicianForm"
+        )
+        .reset();
+
+
+    fermerFormulaire();
+
+
+    alert(
+        "Technicien ajouté avec succès !"
+    );
+
+}
+
+document
+    .getElementById(
+        "modalTechnicien"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+
+            if (
+                event.target === this
+            ) {
+
+                fermerFormulaire();
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

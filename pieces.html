@@ -1,0 +1,2190 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>OMP - Analyse des pièces</title>
+
+    <link rel="stylesheet"
+          href="pieces.css">
+
+</head>
+
+
+<body>
+
+
+<!--SIDEBAR -->
+
+<aside class="sidebar">
+
+    <h2>GESTION</h2>
+
+    <nav>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="workorder.html">
+            Work Orders
+        </a>
+
+        <a href="equipements.html">
+            Équipements
+        </a>
+
+        <a href="technicien.html">
+            Techniciens
+        </a>
+
+        <a href="pieces.html" class="active">
+            Pièces
+        </a>
+
+        <a href="pannes.html">
+            Pannes
+        </a>
+
+        <a href="historique.html">
+            Historique
+        </a>
+
+    </nav>
+
+</aside>
+
+
+<main class="main-content">
+
+
+
+<header class="top-header">
+
+    <div class="logo">
+        OMP
+    </div>
+
+    <div class="header-title">
+
+        <h2>
+            Pièces
+        </h2>
+
+        <p>
+            Gestion et analyse des pièces
+        </p>
+
+    </div>
+
+    <div class="administrator">
+        Administrateur
+    </div>
+
+</header>
+
+
+
+<section class="page">
+
+
+<!-- TITRE-->
+
+<div class="page-header">
+
+    <div>
+
+        <h1>
+            Pièces
+        </h1>
+
+        <p>
+            Analyse de l'utilisation, des achats et de la fiabilité
+        </p>
+
+    </div>
+
+
+    <div class="actions">
+
+        <a
+            href="historique.html"
+            class="btn-history">
+
+            Historique
+
+        </a>
+
+
+        <button
+            class="btn-add"
+            onclick="ouvrirFormulaire()">
+
+            + Nouvelle pièce
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!--  RECHERCHE-->
+
+<div class="search-box">
+
+    <span>
+        🔎
+    </span>
+
+    <input
+        id="searchInput"
+        type="text"
+        placeholder="Rechercher une pièce, référence, catégorie...">
+
+</div>
+
+
+
+<!-- STATISTIQUES PRINCIPALES -->
+
+<div class="stats-grid">
+
+
+    <div class="stat-card">
+
+        <span>
+            Total pièces
+        </span>
+
+        <strong id="totalPieces">
+            86
+        </strong>
+
+        <small>
+            Références enregistrées
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            Pièces utilisées
+        </span>
+
+        <strong class="green">
+            64
+        </strong>
+
+        <small>
+            Ont été utilisées
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            Pièces achetées
+        </span>
+
+        <strong class="blue">
+            142
+        </strong>
+
+        <small>
+            Quantité achetée
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            Pièces cassées
+        </span>
+
+        <strong class="red">
+            17
+        </strong>
+
+        <small>
+            Défaillances enregistrées
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            Stock disponible
+        </span>
+
+        <strong class="orange">
+            218
+        </strong>
+
+        <small>
+            Unités disponibles
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            Stock critique
+        </span>
+
+        <strong class="red">
+            9
+        </strong>
+
+        <small>
+            Pièces à réapprovisionner
+        </small>
+
+    </div>
+
+</div>
+
+<div class="charts-grid">
+
+
+<div class="chart-card">
+
+    <h2>
+        Utilisation des pièces
+    </h2>
+
+    <p>
+        Répartition selon leur fréquence d'utilisation
+    </p>
+
+
+    <div class="donut-container">
+
+
+        <div class="donut">
+
+            <div class="donut-center">
+
+                <strong>
+                    86
+                </strong>
+
+                <span>
+                    références
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="legend">
+
+
+            <div>
+
+                <span class="dot green-dot"></span>
+
+                Très utilisées
+
+                <strong>
+                    18
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span class="dot blue-dot"></span>
+
+                Moyennement utilisées
+
+                <strong>
+                    29
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span class="dot orange-dot"></span>
+
+                Peu utilisées
+
+                <strong>
+                    17
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span class="dot red-dot"></span>
+
+                Jamais utilisées
+
+                <strong>
+                    22
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+<div class="chart-card">
+
+    <h2>
+        Pièces les plus achetées
+    </h2>
+
+    <p>
+        Quantités achetées par référence
+    </p>
+
+
+    <div class="bar-chart">
+
+
+        <div class="bar-item">
+
+            <div class="bar-label">
+
+                <span>
+                    Filtre à huile
+                </span>
+
+                <strong>
+                    42
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar purchase-bar"
+                    style="width:90%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="bar-item">
+
+            <div class="bar-label">
+
+                <span>
+                    Filtre carburant
+                </span>
+
+                <strong>
+                    35
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar purchase-bar"
+                    style="width:75%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="bar-item">
+
+            <div class="bar-label">
+
+                <span>
+                    Courroie moteur
+                </span>
+
+                <strong>
+                    28
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar purchase-bar"
+                    style="width:60%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="bar-item">
+
+            <div class="bar-label">
+
+                <span>
+                    Plaquette frein
+                </span>
+
+                <strong>
+                    22
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar purchase-bar"
+                    style="width:48%">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+<div class="section-title">
+
+    <h2>
+        Pièces les plus utilisées
+    </h2>
+
+</div>
+
+
+<div class="analysis-grid">
+
+
+    <div class="analysis-card">
+
+        <div class="analysis-header">
+
+            <span class="analysis-icon green-icon">
+                🔧
+            </span>
+
+            <div>
+
+                <h3>
+                    Top utilisation
+                </h3>
+
+                <p>
+                    Nombre d'utilisations
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                Filtre à huile
+            </span>
+
+            <strong class="green">
+                38
+            </strong>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                Filtre carburant
+            </span>
+
+            <strong>
+                31
+            </strong>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                Courroie moteur
+            </span>
+
+            <strong>
+                24
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MOINS UTILISEES -->
+
+    <div class="analysis-card">
+
+        <div class="analysis-header">
+
+            <span class="analysis-icon blue-icon">
+                📉
+            </span>
+
+            <div>
+
+                <h3>
+                    Moins utilisées
+                </h3>
+
+                <p>
+                    Faible consommation
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                Joint hydraulique
+            </span>
+
+            <strong>
+                2
+            </strong>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                Relais électrique
+            </span>
+
+            <strong>
+                2
+            </strong>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                Capteur température
+            </span>
+
+            <strong>
+                1
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- PIECES CASSEES -->
+
+    <div class="analysis-card">
+
+        <div class="analysis-header">
+
+            <span class="analysis-icon red-icon">
+                💥
+            </span>
+
+            <div>
+
+                <h3>
+                    Plus défaillantes
+                </h3>
+
+                <p>
+                    Nombre de casses
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                Courroie moteur
+            </span>
+
+            <strong class="red">
+                7
+            </strong>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                Filtre carburant
+            </span>
+
+            <strong class="red">
+                5
+            </strong>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                Pompe hydraulique
+            </span>
+
+            <strong class="orange">
+                3
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+     FIABILITE
+===================================================== -->
+
+<div class="section-title">
+
+    <h2>
+        Fiabilité des pièces
+    </h2>
+
+</div>
+
+
+<div class="reliability-grid">
+
+
+    <!-- PLUS FIABLE -->
+
+    <div class="reliability-card">
+
+        <div class="reliability-title">
+
+            <span class="big-icon green-icon">
+                ⭐
+            </span>
+
+            <div>
+
+                <h3>
+                    Pièces les plus fiables
+                </h3>
+
+                <p>
+                    Peu de défaillances
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="reliability-item">
+
+            <span>
+                Capteur température
+            </span>
+
+            <strong class="green">
+                98 %
+            </strong>
+
+        </div>
+
+
+        <div class="reliability-item">
+
+            <span>
+                Joint hydraulique
+            </span>
+
+            <strong class="green">
+                96 %
+            </strong>
+
+        </div>
+
+
+        <div class="reliability-item">
+
+            <span>
+                Relais électrique
+            </span>
+
+            <strong class="green">
+                95 %
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- MOINS FIABLE -->
+
+    <div class="reliability-card">
+
+        <div class="reliability-title">
+
+            <span class="big-icon red-icon">
+                ⚠️
+            </span>
+
+            <div>
+
+                <h3>
+                    Pièces les moins fiables
+                </h3>
+
+                <p>
+                    Taux de défaillance élevé
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="reliability-item">
+
+            <span>
+                Courroie moteur
+            </span>
+
+            <strong class="red">
+                72 %
+            </strong>
+
+        </div>
+
+
+        <div class="reliability-item">
+
+            <span>
+                Pompe hydraulique
+            </span>
+
+            <strong class="red">
+                78 %
+            </strong>
+
+        </div>
+
+
+        <div class="reliability-item">
+
+            <span>
+                Filtre carburant
+            </span>
+
+            <strong class="orange">
+                82 %
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- STOCK -->
+
+    <div class="reliability-card">
+
+        <div class="reliability-title">
+
+            <span class="big-icon orange-icon">
+                📦
+            </span>
+
+            <div>
+
+                <h3>
+                    Stock critique
+                </h3>
+
+                <p>
+                    Pièces à commander
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="reliability-item">
+
+            <span>
+                Pompe hydraulique
+            </span>
+
+            <strong class="red">
+                2
+            </strong>
+
+        </div>
+
+
+        <div class="reliability-item">
+
+            <span>
+                Courroie moteur
+            </span>
+
+            <strong class="red">
+                3
+            </strong>
+
+        </div>
+
+
+        <div class="reliability-item">
+
+            <span>
+                Filtre carburant
+            </span>
+
+            <strong class="orange">
+                5
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ANALYSE EQUIPEMENTS -->
+
+<div class="section-title">
+
+    <h2>
+        Pièces et équipements
+    </h2>
+
+</div>
+
+
+<div class="equipment-analysis">
+
+
+    <div class="equipment-card">
+
+        <h3>
+            🚜 Équipements consommant le plus de pièces
+        </h3>
+
+
+        <div class="ranking">
+
+            <div>
+
+                <span>
+                    CAT950
+                </span>
+
+                <strong class="red">
+                    38 pièces
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    VOL-A35
+                </span>
+
+                <strong>
+                    29 pièces
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    CAT320
+                </span>
+
+                <strong>
+                    21 pièces
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="equipment-card">
+
+        <h3>
+            🔧 Pièces les plus utilisées sur CAT950
+        </h3>
+
+
+        <div class="ranking">
+
+            <div>
+
+                <span>
+                    Filtre à huile
+                </span>
+
+                <strong>
+                    12
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Courroie moteur
+                </span>
+
+                <strong>
+                    8
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Filtre carburant
+                </span>
+
+                <strong>
+                    7
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- EVOLUTION -->
+
+<div class="section-title">
+
+    <h2>
+        Évolution de la consommation
+    </h2>
+
+</div>
+
+
+<div class="chart-card timeline-card">
+
+    <p>
+        Nombre de pièces utilisées par mois
+    </p>
+
+
+    <div class="monthly-chart">
+
+
+        <div class="month">
+
+            <div
+                class="column"
+                style="height:45%">
+            </div>
+
+            <span>
+                Jan
+            </span>
+
+            <strong>
+                18
+            </strong>
+
+        </div>
+
+
+        <div class="month">
+
+            <div
+                class="column"
+                style="height:60%">
+            </div>
+
+            <span>
+                Fév
+            </span>
+
+            <strong>
+                24
+            </strong>
+
+        </div>
+
+
+        <div class="month">
+
+            <div
+                class="column"
+                style="height:72%">
+            </div>
+
+            <span>
+                Mar
+            </span>
+
+            <strong>
+                31
+            </strong>
+
+        </div>
+
+
+        <div class="month">
+
+            <div
+                class="column"
+                style="height:55%">
+            </div>
+
+            <span>
+                Avr
+            </span>
+
+            <strong>
+                23
+            </strong>
+
+        </div>
+
+
+        <div class="month">
+
+            <div
+                class="column"
+                style="height:90%">
+            </div>
+
+            <span>
+                Mai
+            </span>
+
+            <strong>
+                38
+            </strong>
+
+        </div>
+
+
+        <div class="month">
+
+            <div
+                class="column"
+                style="height:75%">
+            </div>
+
+            <span>
+                Juin
+            </span>
+
+            <strong>
+                32
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+<div class="interpretation">
+
+
+    <div class="interpretation-header">
+
+        <span>
+            📊
+        </span>
+
+        <div>
+
+            <h2>
+                Interprétations et recommandations
+            </h2>
+
+            <p>
+                Analyse automatique de la gestion des pièces
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="interpretation-grid">
+
+
+        <!-- UTILISATION -->
+
+        <div class="interpretation-box">
+
+            <h3 class="green">
+                🔧 Pièce la plus utilisée
+            </h3>
+
+            <p>
+
+                Le <strong>filtre à huile</strong> est
+                actuellement la pièce la plus utilisée
+                avec <strong>38 utilisations</strong>.
+
+                Cette consommation élevée peut être
+                normale pour une pièce d'entretien
+                périodique.
+
+                <br><br>
+
+                <strong>Interprétation :</strong>
+
+                maintenir un stock suffisant afin
+                d'éviter les ruptures.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- ACHAT -->
+
+        <div class="interpretation-box">
+
+            <h3 class="blue">
+                🛒 Pièce la plus achetée
+            </h3>
+
+            <p>
+
+                Le <strong>filtre à huile</strong> est
+                également la pièce la plus achetée
+                avec <strong>42 unités</strong>.
+
+                Cela correspond à son niveau élevé
+                de consommation.
+
+                <br><br>
+
+                <strong>Recommandation :</strong>
+
+                adapter les commandes à la consommation
+                réelle.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- CASSE -->
+
+        <div class="interpretation-box">
+
+            <h3 class="red">
+                💥 Pièce la plus défaillante
+            </h3>
+
+            <p>
+
+                La <strong>courroie moteur</strong>
+                présente le plus grand nombre de
+                défaillances avec <strong>7 casses</strong>.
+
+                <br><br>
+
+                Cela peut indiquer un problème de
+                qualité, de montage, d'utilisation
+                ou d'entretien.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- FIABILITE -->
+
+        <div class="interpretation-box">
+
+            <h3 class="green">
+                ⭐ Pièces les plus fiables
+            </h3>
+
+            <p>
+
+                Le <strong>capteur température</strong>
+                présente un taux de fiabilité de
+                <strong>98 %</strong>.
+
+                Il possède donc très peu de
+                défaillances par rapport à son
+                utilisation.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- STOCK -->
+
+        <div class="interpretation-box">
+
+            <h3 class="orange">
+                📦 Risque de rupture
+            </h3>
+
+            <p>
+
+                Certaines pièces possèdent actuellement
+                un stock faible.
+
+                La <strong>pompe hydraulique</strong>
+                possède seulement <strong>2 unités</strong>.
+
+                <br><br>
+
+                Une commande devrait être envisagée
+                avant une éventuelle rupture.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- EQUIPEMENT -->
+
+        <div class="interpretation-box">
+
+            <h3>
+                🚜 Équipement consommateur
+            </h3>
+
+            <p>
+
+                Le <strong>CAT950</strong> consomme
+                davantage de pièces que les autres
+                équipements analysés.
+
+                <br><br>
+
+                Cela peut être lié à son âge,
+                son utilisation intensive ou à des
+                pannes récurrentes.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- CONSOMMATION -->
+
+        <div class="interpretation-box">
+
+            <h3>
+                📈 Évolution
+            </h3>
+
+            <p>
+
+                La consommation augmente fortement
+                au mois de mai avec
+                <strong>38 pièces utilisées</strong>.
+
+                <br><br>
+
+                Cette augmentation peut être comparée
+                au nombre de Work Orders et aux
+                équipements ayant été utilisés
+                pendant cette période.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- PIECES DORMANTES -->
+
+        <div class="interpretation-box">
+
+            <h3>
+                📉 Pièces peu utilisées
+            </h3>
+
+            <p>
+
+                Certaines références sont très peu
+                utilisées.
+
+                <br><br>
+
+                Ces pièces peuvent immobiliser
+                inutilement du capital dans le stock.
+
+                Il peut être intéressant de revoir
+                leur niveau de stockage.
+
+            </p>
+
+        </div>
+
+
+
+        <!-- ANALYSE GLOBALE -->
+
+        <div class="interpretation-box">
+
+            <h3>
+                🧠 Analyse globale
+            </h3>
+
+            <p>
+
+                La gestion des pièces doit trouver
+                un équilibre entre
+
+                <strong>disponibilité</strong>,
+                <strong>coût</strong> et
+                <strong>consommation</strong>.
+
+                <br><br>
+
+                Les pièces fortement utilisées doivent
+                être disponibles tandis que les pièces
+                rarement utilisées doivent être
+                commandées avec davantage de prudence.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+<div class="table-card">
+
+    <div class="table-title">
+
+        <h2>
+            Liste des pièces
+        </h2>
+
+        <p>
+            Suivi détaillé des pièces
+        </p>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Référence
+                    </th>
+
+                    <th>
+                        Désignation
+                    </th>
+
+                    <th>
+                        Catégorie
+                    </th>
+
+                    <th>
+                        Utilisations
+                    </th>
+
+                    <th>
+                        Achats
+                    </th>
+
+                    <th>
+                        Casses
+                    </th>
+
+                    <th>
+                        Stock
+                    </th>
+
+                    <th>
+                        Fiabilité
+                    </th>
+
+                    <th>
+                        Historique
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="pieceTable">
+
+
+                <tr>
+
+                    <td>
+                        P001
+                    </td>
+
+                    <td>
+                        Filtre à huile
+                    </td>
+
+                    <td>
+                        Filtration
+                    </td>
+
+                    <td>
+                        38
+                    </td>
+
+                    <td>
+                        42
+                    </td>
+
+                    <td>
+                        1
+                    </td>
+
+                    <td>
+
+                        <span class="badge available">
+                            32
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <strong class="green">
+                            97 %
+                        </strong>
+
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="historique.html"
+                            class="btn-view">
+
+                            Voir
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>
+                        P002
+                    </td>
+
+                    <td>
+                        Courroie moteur
+                    </td>
+
+                    <td>
+                        Moteur
+                    </td>
+
+                    <td>
+                        24
+                    </td>
+
+                    <td>
+                        28
+                    </td>
+
+                    <td>
+                        7
+                    </td>
+
+                    <td>
+
+                        <span class="badge critical">
+                            3
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <strong class="red">
+                            72 %
+                        </strong>
+
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="historique.html"
+                            class="btn-view">
+
+                            Voir
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>
+                        P003
+                    </td>
+
+                    <td>
+                        Capteur température
+                    </td>
+
+                    <td>
+                        Électricité
+                    </td>
+
+                    <td>
+                        1
+                    </td>
+
+                    <td>
+                        4
+                    </td>
+
+                    <td>
+                        0
+                    </td>
+
+                    <td>
+
+                        <span class="badge available">
+                            15
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <strong class="green">
+                            98 %
+                        </strong>
+
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="historique.html"
+                            class="btn-view">
+
+                            Voir
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+</section>
+
+</main>
+
+
+
+
+<div
+    id="modalPiece"
+    class="modal">
+
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Nouvelle pièce
+                </h2>
+
+                <p>
+                    Ajouter une pièce au stock
+                </p>
+
+            </div>
+
+
+            <button
+                class="close-button"
+                onclick="fermerFormulaire()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+
+        <form
+            id="pieceForm"
+            onsubmit="ajouterPiece(event)">
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Référence
+                    </label>
+
+                    <input
+                        id="pieceReference"
+                        type="text"
+                        placeholder="Ex : P004"
+                        required>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Désignation
+                    </label>
+
+                    <input
+                        id="pieceName"
+                        type="text"
+                        placeholder="Nom de la pièce"
+                        required>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Catégorie
+                    </label>
+
+                    <select
+                        id="pieceCategory">
+
+                        <option>
+                            Moteur
+                        </option>
+
+                        <option>
+                            Filtration
+                        </option>
+
+                        <option>
+                            Hydraulique
+                        </option>
+
+                        <option>
+                            Électricité
+                        </option>
+
+                        <option>
+                            Freinage
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Quantité en stock
+                    </label>
+
+                    <input
+                        id="pieceStock"
+                        type="number"
+                        min="0"
+                        placeholder="0"
+                        required>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Quantité achetée
+                    </label>
+
+                    <input
+                        id="piecePurchase"
+                        type="number"
+                        min="0"
+                        placeholder="0">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Prix unitaire
+                    </label>
+
+                    <input
+                        type="number"
+                        min="0"
+                        placeholder="Prix">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Fournisseur
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Nom du fournisseur">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Seuil minimum
+                    </label>
+
+                    <input
+                        type="number"
+                        min="0"
+                        placeholder="Ex : 5">
+
+                </div>
+
+            </div>
+
+
+
+            <div class="form-footer">
+
+                <button
+                    type="button"
+                    class="btn-cancel"
+                    onclick="fermerFormulaire()">
+
+                    Annuler
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-save">
+
+                    Enregistrer
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+
+<script>
+
+
+
+function ouvrirFormulaire() {
+
+    document
+        .getElementById("modalPiece")
+        .classList.add("show");
+
+}
+
+
+
+
+function fermerFormulaire() {
+
+    document
+        .getElementById("modalPiece")
+        .classList.remove("show");
+
+}
+
+
+
+
+
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "input",
+        function() {
+
+
+            const recherche =
+                this.value.toLowerCase();
+
+
+            const lignes =
+                document.querySelectorAll(
+                    "#pieceTable tr"
+                );
+
+
+            lignes.forEach(
+                function(ligne) {
+
+
+                    const texte =
+                        ligne.textContent
+                            .toLowerCase();
+
+
+                    if (
+                        texte.includes(recherche)
+                    ) {
+
+                        ligne.style.display = "";
+
+                    }
+
+                    else {
+
+                        ligne.style.display = "none";
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+
+
+function ajouterPiece(event) {
+
+    event.preventDefault();
+
+
+    const reference =
+        document.getElementById(
+            "pieceReference"
+        ).value;
+
+
+    const name =
+        document.getElementById(
+            "pieceName"
+        ).value;
+
+
+    const category =
+        document.getElementById(
+            "pieceCategory"
+        ).value;
+
+
+    const stock =
+        document.getElementById(
+            "pieceStock"
+        ).value;
+
+
+    const purchase =
+        document.getElementById(
+            "piecePurchase"
+        ).value || 0;
+
+
+
+    let stockClass =
+        "available";
+
+
+    if (
+        Number(stock) <= 3
+    ) {
+
+        stockClass =
+            "critical";
+
+    }
+
+
+
+    const ligne =
+        document.createElement("tr");
+
+
+    ligne.innerHTML = `
+
+        <td>
+            ${reference}
+        </td>
+
+        <td>
+            ${name}
+        </td>
+
+        <td>
+            ${category}
+        </td>
+
+        <td>
+            0
+        </td>
+
+        <td>
+            ${purchase}
+        </td>
+
+        <td>
+            0
+        </td>
+
+        <td>
+
+            <span
+                class="badge ${stockClass}">
+
+                ${stock}
+
+            </span>
+
+        </td>
+
+        <td>
+
+            <strong class="green">
+                100 %
+            </strong>
+
+        </td>
+
+        <td>
+
+            <a
+                href="historique.html"
+                class="btn-view">
+
+                Voir
+
+            </a>
+
+        </td>
+
+    `;
+
+
+    document
+        .getElementById(
+            "pieceTable"
+        )
+        .appendChild(ligne);
+
+
+
+    const total =
+        document.querySelectorAll(
+            "#pieceTable tr"
+        ).length;
+
+
+    document
+        .getElementById(
+            "totalPieces"
+        )
+        .textContent = total;
+
+
+
+    document
+        .getElementById(
+            "pieceForm"
+        )
+        .reset();
+
+
+    fermerFormulaire();
+
+
+    alert(
+        "Pièce ajoutée avec succès !"
+    );
+
+}
+
+
+
+
+document
+    .getElementById("modalPiece")
+    .addEventListener(
+        "click",
+        function(event) {
+
+
+            if (
+                event.target === this
+            ) {
+
+                fermerFormulaire();
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>

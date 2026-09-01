@@ -1,0 +1,1102 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>OMP - Dashboard Maintenance</title>
+    <link rel="stylesheet"
+          href="dashboard.css">
+
+</head>
+
+
+<body>
+
+
+<!--barre de cote-->
+
+<aside class="sidebar">
+    <div class="sidebar-logo">
+        OMP
+    </div>
+    <h3>GESTION</h3>
+
+
+    <nav>
+        <a href="dashboard.html"
+           class="active">
+             Dashboard
+        </a>
+        <a href="workorder.html">
+             Work Orders
+        </a>
+        <a href="equipements.html">
+             Machines
+        </a>
+        <a href="technicien.html">
+            Techniciens
+        </a>
+        <a href="pieces.html">
+             Pièces
+        </a>
+        <a href="pannes.html">
+             Pannes
+        </a>
+    </nav>
+</aside>
+
+
+
+<!--CONTENU PRINCIPAL -->
+
+<main class="main-content">
+
+<!--header-->
+
+<header class="top-header">
+    <div>
+        <h2>
+            Dashboard
+        </h2>
+        <p>
+            Vue globale de la maintenance
+        </p>
+    </div>
+
+    <div class="administrator">
+        Administrateur
+    </div>
+</header>
+
+<!--PAGE -->
+
+<section class="dashboard">
+<!--TITRE-->
+
+<div class="dashboard-title">
+    <div>
+        <h1>
+            Tableau de bord maintenance
+        </h1>
+        <p>
+            Synthèse analytique et visuelle de l'activité
+            de maintenance
+        </p>
+    </div>
+
+
+    <div class="date">
+        Dernière mise à jour :
+        <strong id="dateActuelle"></strong>
+    </div>
+</div>
+
+
+<!--KPI GENERAUX -->
+
+<div class="kpi-grid">
+    <div class="kpi-card">
+        <div class="kpi-icon">
+        </div>
+        <div>
+            <span>
+                Équipements
+            </span>
+            <strong>
+                42
+            </strong>
+            <small class="positive">
+                36 opérationnels
+            </small>
+        </div>
+    </div>
+
+    <div class="kpi-card">
+        <div class="kpi-icon">
+        </div>
+        <div>
+            <span>
+                Work Orders
+            </span>
+            <strong>
+                128
+            </strong>
+            <small>
+                18 en cours
+            </small>
+        </div>
+    </div>
+
+    <div class="kpi-card">
+        <div class="kpi-icon">
+        </div>
+        <div>
+            <span>
+                Pannes
+            </span>
+            <strong>
+                37
+            </strong>
+            <small class="negative">
+                8 critiques
+            </small>
+        </div>
+    </div>
+
+    <div class="kpi-card">
+        <div class="kpi-icon">
+        </div>
+        <div>
+            <span>
+                Techniciens
+            </span>
+            <strong>
+                16
+            </strong>
+            <small>
+                12 disponibles
+            </small>
+        </div>
+    </div>
+
+
+    <div class="kpi-card">
+        <div class="kpi-icon">
+        </div>
+        <div>
+            <span>
+                Pièces
+            </span>
+            <strong>
+                86
+            </strong>
+            <small class="warning">
+                9 stocks critiques
+            </small>
+        </div>
+    </div>
+
+    <div class="kpi-card">
+        <div class="kpi-icon">
+        </div>
+        <div>
+            <span>
+                Temps moyen
+            </span>
+            <strong>
+                4h25
+            </strong>
+            <small>
+                par intervention
+            </small>
+        </div>
+    </div>
+</div>
+
+
+<!--ETAT GENERAl-->
+
+<div class="section-title">
+    <h2>
+        État général de la maintenance
+    </h2>
+</div>
+
+<div class="overview-grid">
+<!-- EQUIPEMENTS -->
+<div class="overview-card">
+    <div class="card-title">
+        <div>
+            <h3>
+            Équipements
+            </h3>
+            <p>
+                État du parc
+            </p>
+        </div>
+        <a href="equipements.html">
+            Voir →
+        </a>
+    </div>
+    <div class="big-number">
+        86%
+        <span>
+            disponibilité
+        </span>
+    </div>
+
+    <div class="mini-bars">
+        <div>
+            <span>
+                Opérationnels
+            </span>
+            <strong>
+                36
+            </strong>
+        </div>
+        <div class="bar">
+            <div
+                class="bar-green"
+                style="width:86%">
+            </div>
+        </div>
+
+
+        <div>
+            <span>
+                En maintenance
+            </span>
+            <strong>
+                4
+            </strong>
+        </div>
+
+        <div class="bar">
+            <div
+                class="bar-orange"
+                style="width:10%">
+            </div>
+        </div>
+        <div>
+            <span>
+                Hors service
+            </span>
+            <strong>
+                2
+            </strong>
+        </div>
+
+        <div class="bar">
+            <div
+                class="bar-red"
+                style="width:5%">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- WORK ORDERS -->
+<div class="overview-card">
+    <div class="card-title">
+        <div>
+            <h3>
+                 Work Orders
+            </h3>
+            <p>
+                État des interventions
+            </p>
+        </div>
+        <a href="workorder.html">
+            Voir →
+        </a>
+    </div>
+
+
+    <div class="wo-status">
+        <div>
+            <span class="status-circle green">
+                82
+            </span>
+            <p>
+                Terminés
+            </p>
+        </div>
+
+        <div>
+            <span class="status-circle orange">
+                18
+            </span>
+            <p>
+                En cours
+            </p>
+        </div>
+
+
+        <div>
+            <span class="status-circle red">
+                8
+            </span>
+            <p>
+                En retard
+            </p>
+        </div>
+
+
+        <div>
+            <span class="status-circle blue">
+                20
+            </span>
+            <p>
+                Planifiés
+            </p>
+        </div>
+    </div>
+</div>
+
+<!-- PANNES -->
+
+<div class="overview-card">
+    <div class="card-title">
+        <div>
+            <h3>
+                 Pannes
+            </h3>
+            <p>
+                Principales défaillances
+            </p>
+        </div>
+        <a href="pannes.html">
+            Voir →
+        </a>
+    </div>
+
+
+    <div class="ranking">
+        <div>
+            <span>
+                Surchauffe moteur
+            </span>
+            <strong class="red">
+                12
+            </strong>
+        </div>
+        <div>
+            <span>
+                Fuite hydraulique
+            </span>
+            <strong class="orange">
+                9
+            </strong>
+        </div>
+        <div>
+            <span>
+                Défaut électrique
+            </span>
+            <strong>
+                7
+            </strong>
+        </div>
+        <div>
+            <span>
+                Freinage
+            </span>
+            <strong>
+                5
+            </strong>
+        </div>
+    </div>
+</div>
+
+
+<!-- PIECES -->
+
+<div class="overview-card">
+    <div class="card-title">
+        <div>
+            <h3>
+                Pièces
+            </h3>
+            <p>
+                Situation du stock
+            </p>
+        </div>
+        <a href="pieces.html">
+            Voir →
+        </a>
+    </div>
+
+
+    <div class="stock-info">
+        <div class="stock-number">
+            <strong>
+                218
+            </strong>
+            <span>
+                unités en stock
+            </span>
+        </div>
+
+
+        <div class="stock-alert">
+            <strong>
+                9
+            </strong>
+            <span>
+                références critiques
+            </span>
+        </div>
+    </div>
+
+
+    <div class="ranking">
+        <div>
+            <span>
+                Plus utilisée
+            </span>
+            <strong>
+                Filtre à huile
+            </strong>
+        </div>
+        <div>
+            <span>
+                Plus défaillante
+            </span>
+            <strong class="red">
+                Courroie
+            </strong>
+        </div>
+    </div>
+</div>
+</div>
+
+
+
+<!--TECHNICIENS -->
+
+<div class="section-title">
+    <h2>
+        Performance des techniciens
+    </h2>
+</div>
+
+
+<div class="technician-dashboard">
+    <div class="technician-stat">
+        <span>
+             Techniciens actifs
+        </span>
+        <strong>
+            12
+        </strong>
+    </div>
+
+    <div class="technician-stat">
+        <span>
+             WO terminés
+        </span>
+        <strong>
+            82
+        </strong>
+    </div>
+
+
+    <div class="technician-stat">
+        <span>
+            Taux de réussite
+        </span>
+        <strong class="green">
+            91%
+        </strong>
+    </div>
+
+
+    <div class="technician-stat">
+        <span>
+             Temps moyen
+        </span>
+        <strong>
+            4h25
+        </strong>
+    </div>
+</div>
+
+
+
+<div class="ranking-card">
+    <h3>
+         Techniciens les plus performants
+    </h3>
+    <div class="ranking-row">
+        <span>
+            1. Ndong Jean
+        </span>
+        <strong>
+            96%
+        </strong>
+    </div>
+
+    <div class="ranking-row">
+        <span>
+            2. Obame Paul
+        </span>
+        <strong>
+            93%
+        </strong>
+    </div>
+
+
+    <div class="ranking-row">
+
+        <span>
+            3. Essono Michel
+        </span>
+
+        <strong>
+            89%
+        </strong>
+
+    </div>
+
+</div>
+
+
+
+<!--GRAPHIQUE EVOLUTION -->
+
+<div class="section-title">
+
+    <h2>
+        Évolution de l'activité
+    </h2>
+
+</div>
+
+
+<div class="chart-card">
+
+    <h3>
+        Work Orders par mois
+    </h3>
+
+    <p>
+        Évolution du volume d'interventions
+    </p>
+
+
+    <div class="large-chart">
+
+
+        <div class="month">
+
+            <strong>
+                18
+            </strong>
+
+            <div
+                class="column"
+                style="height:45%">
+            </div>
+
+            <span>
+                Jan
+            </span>
+
+        </div>
+
+
+        <div class="month">
+
+            <strong>
+                21
+            </strong>
+
+            <div
+                class="column"
+                style="height:53%">
+            </div>
+
+            <span>
+                Fév
+            </span>
+
+        </div>
+
+
+        <div class="month">
+
+            <strong>
+                26
+            </strong>
+
+            <div
+                class="column"
+                style="height:65%">
+            </div>
+
+            <span>
+                Mar
+            </span>
+
+        </div>
+
+
+        <div class="month">
+
+            <strong>
+                19
+            </strong>
+
+            <div
+                class="column"
+                style="height:48%">
+            </div>
+
+            <span>
+                Avr
+            </span>
+
+        </div>
+
+
+        <div class="month">
+
+            <strong>
+                28
+            </strong>
+
+            <div
+                class="column"
+                style="height:72%">
+            </div>
+
+            <span>
+                Mai
+            </span>
+
+        </div>
+
+
+        <div class="month">
+
+            <strong>
+                31
+            </strong>
+
+            <div
+                class="column"
+                style="height:82%">
+            </div>
+
+            <span>
+                Juin
+            </span>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ALERTES -->
+
+<div class="section-title">
+
+    <h2>
+         Alertes et points d'attention
+    </h2>
+
+</div>
+
+
+<div class="alerts-grid">
+    <div class="alert-card danger">
+        <div class="alert-icon">
+        </div>
+        <div>
+            <h3>
+                Équipement critique
+            </h3>
+            <p>
+                Le CAT950 possède un nombre élevé
+                de Work Orders et de pannes.
+            </p>
+            <strong>
+                11 Work Orders
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="alert-card warning">
+
+        <div class="alert-icon">
+        
+        </div>
+
+        <div>
+
+            <h3>
+                Stock faible
+            </h3>
+
+            <p>
+
+                Plusieurs références sont proches
+                de leur seuil minimum.
+
+            </p>
+
+            <strong>
+                9 références
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="alert-card danger">
+
+        <div class="alert-icon">
+        </div>
+
+        <div>
+
+            <h3>
+                Panne récurrente
+            </h3>
+
+            <p>
+
+                La surchauffe moteur revient
+                régulièrement.
+
+            </p>
+
+            <strong>
+                12 occurrences
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="alert-card info">
+
+        <div class="alert-icon">
+            
+        </div>
+
+        <div>
+
+            <h3>
+                Temps d'intervention
+            </h3>
+
+            <p>
+
+                Certaines interventions dépassent
+                largement le temps moyen.
+
+            </p>
+
+            <strong>
+                Moyenne : 4h25
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!--INTERPRETATION GENERAL-->
+
+<div class="section-title">
+
+    <h2>
+        Analyse et interprétation globale
+    </h2>
+
+</div>
+
+
+<div class="interpretation">
+
+
+    <div class="interpretation-header">
+
+        <span>
+            
+        </span>
+
+        <div>
+
+            <h2>
+                Bilan analytique
+            </h2>
+
+            <p>
+                Synthèse des informations de maintenance
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="interpretation-grid">
+
+
+        <div class="interpretation-box">
+
+            <h3 class="green">
+                Situation générale
+            </h3>
+
+            <p>
+
+                Le parc présente actuellement un taux
+                de disponibilité de <strong>86 %</strong>.
+
+                La majorité des équipements sont donc
+                opérationnels.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3 class="red">
+                Problème principal
+            </h3>
+
+            <p>
+
+                Les pannes de <strong>surchauffe moteur</strong>
+                représentent une part importante des
+                interventions.
+
+                Une analyse des causes devrait être
+                réalisée.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3 class="orange">
+                Équipement à surveiller
+            </h3>
+
+            <p>
+
+                Le <strong>CAT950</strong> concentre
+                plusieurs interventions.
+
+                Il doit être surveillé afin d'éviter
+                une augmentation des immobilisations.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3 class="blue">
+                Gestion des pièces
+            </h3>
+
+            <p>
+
+                Le stock contient de nombreuses références,
+                mais certaines pièces sont proches de
+                la rupture.
+
+                Un réapprovisionnement doit être anticipé.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3 class="green">
+                 Performance humaine
+            </h3>
+
+            <p>
+
+                Le taux de réussite des techniciens est
+                actuellement estimé à <strong>91 %</strong>.
+
+                Les techniciens les plus performants
+                peuvent servir de référence pour les
+                bonnes pratiques.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3>
+                Évolution
+            </h3>
+
+            <p>
+
+                Le volume des Work Orders augmente
+                progressivement.
+
+                Il est donc important de vérifier si
+                cette augmentation est liée à une
+                hausse des pannes ou à une augmentation
+                des opérations préventives.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3 class="red">
+                 Risque
+            </h3>
+
+            <p>
+
+                La combinaison de pannes récurrentes,
+                d'équipements fortement sollicités et
+                de stocks critiques peut entraîner
+                des immobilisations prolongées.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3 class="green">
+                 Recommandation
+            </h3>
+
+            <p>
+
+                Renforcer la maintenance préventive,
+                surveiller les équipements critiques
+                et anticiper les commandes de pièces
+                importantes.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!--JAVASCRIPT -->
+
+<script>
+
+
+/*  DATE*/
+
+const date = new Date();
+
+
+document.getElementById(
+    "dateActuelle"
+).textContent =
+    date.toLocaleDateString(
+        "fr-FR",
+        {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric"
+        }
+    );
+
+
+
+/* ANIMATION DES BARRES */
+
+const bars =
+    document.querySelectorAll(
+        ".bar-green, .bar-orange, .bar-red"
+    );
+
+
+bars.forEach(
+    function(bar) {
+
+        const width =
+            bar.style.width;
+
+        bar.style.width = "0";
+
+
+        setTimeout(
+            function() {
+
+                bar.style.width =
+                    width;
+
+            },
+            300
+        );
+
+    }
+);
+
+
+
+/* ANIMATION DES COLONNES*/
+
+const columns =
+    document.querySelectorAll(
+        ".column"
+    );
+
+
+columns.forEach(
+    function(column) {
+
+        const height =
+            column.style.height;
+
+        column.style.height = "0";
+
+
+        setTimeout(
+            function() {
+
+                column.style.height =
+                    height;
+
+            },
+            400
+        );
+
+    }
+);
+
+
+</script>
+
+
+</body>
+
+</html>

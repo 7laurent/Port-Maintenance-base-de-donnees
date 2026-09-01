@@ -1,0 +1,2331 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>OMP - Analyse Work Orders</title>
+
+    <link rel="stylesheet"
+          href="workorder.css">
+
+</head>
+
+
+<body>
+
+<aside class="sidebar">
+
+    <h2>GESTION</h2>
+
+    <nav>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="workorder.html"
+           class="active">
+            Work Orders
+        </a>
+
+        <a href="equipements.html">
+            Équipements
+        </a>
+
+        <a href="technicien.html">
+            Techniciens
+        </a>
+
+        <a href="pieces.html">
+            Pièces
+        </a>
+
+        <a href="pannes.html">
+            Pannes
+        </a>
+
+        <a href="historique.html">
+            Historique
+        </a>
+
+    </nav>
+
+</aside>
+
+
+
+<!-- CONTENU -->
+
+<main class="main-content">
+
+
+<!-- HEADER -->
+
+<header class="top-header">
+
+    <div class="logo">
+        OMP
+    </div>
+
+    <div class="header-title">
+
+        <h2>
+            Work Orders
+        </h2>
+
+        <p>
+            Analyse de maintenance
+        </p>
+
+    </div>
+
+    <div class="administrator">
+        Administrateur
+    </div>
+
+</header>
+
+
+
+<section class="page">
+
+
+<!-- TITRE -->
+
+<div class="page-header">
+
+    <div>
+
+        <h1>
+            Work Orders
+        </h1>
+
+        <p>
+            Analyse détaillée des interventions de maintenance
+        </p>
+
+    </div>
+
+
+    <div class="actions">
+
+        <a
+            href="historique.html"
+            class="btn-history">
+
+            Historique
+
+        </a>
+
+
+        <button
+            class="btn-add"
+            onclick="ouvrirFormulaire()">
+
+            + Nouveau Work Order
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- RECHERCHE -->
+
+<div class="search-box">
+
+    <span>🔎</span>
+
+    <input
+        id="searchInput"
+        type="text"
+        placeholder="Rechercher un WO, équipement, technicien, panne...">
+
+</div>
+
+
+
+<!-- STATISTIQUES GENERALES-->
+
+<div class="stats-grid">
+
+
+    <div class="stat-card">
+
+        <span>
+            Total Work Orders
+        </span>
+
+        <strong id="totalWO">
+            48
+        </strong>
+
+        <small>
+            Toutes interventions
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            Terminés
+        </span>
+
+        <strong class="green">
+            31
+        </strong>
+
+        <small>
+            64,6 %
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            En cours
+        </span>
+
+        <strong class="orange">
+            9
+        </strong>
+
+        <small>
+            Interventions actuelles
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            En retard
+        </span>
+
+        <strong class="red">
+            5
+        </strong>
+
+        <small>
+            Nécessitent une attention
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            Critiques
+        </span>
+
+        <strong class="red">
+            3
+        </strong>
+
+        <small>
+            Priorité critique
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            Temps moyen
+        </span>
+
+        <strong>
+            4h25
+        </strong>
+
+        <small>
+            Par intervention
+        </small>
+
+    </div>
+
+</div>
+
+
+
+<!--  GRAPHIQUES PRINCIPAUX -->
+
+<div class="charts-grid">
+
+
+<!--  STATUT -->
+
+<div class="chart-card">
+
+    <h2>
+        Répartition des Work Orders
+    </h2>
+
+    <p>
+        Analyse par statut
+    </p>
+
+
+    <div class="donut-container">
+
+
+        <div class="donut">
+
+            <div class="donut-center">
+
+                <strong>
+                    48
+                </strong>
+
+                <span>
+                    WO
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="legend">
+
+
+            <div>
+
+                <span class="dot green-dot"></span>
+
+                Terminés
+
+                <strong>
+                    31
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span class="dot orange-dot"></span>
+
+                En cours
+
+                <strong>
+                    9
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span class="dot blue-dot"></span>
+
+                Planifiés
+
+                <strong>
+                    3
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span class="dot red-dot"></span>
+
+                En retard
+
+                <strong>
+                    5
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!--  PRIORITES-->
+
+<div class="chart-card">
+
+    <h2>
+        Niveau de priorité
+    </h2>
+
+    <p>
+        Répartition des urgences
+    </p>
+
+
+    <div class="priority-chart">
+
+
+        <div class="bar-item">
+
+            <div class="bar-label">
+
+                <span>
+                    Critique
+                </span>
+
+                <strong>
+                    3
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar critical-bar"
+                    style="width:20%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="bar-item">
+
+            <div class="bar-label">
+
+                <span>
+                    Haute
+                </span>
+
+                <strong>
+                    11
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar high-bar"
+                    style="width:55%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="bar-item">
+
+            <div class="bar-label">
+
+                <span>
+                    Moyenne
+                </span>
+
+                <strong>
+                    23
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar medium-bar"
+                    style="width:80%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="bar-item">
+
+            <div class="bar-label">
+
+                <span>
+                    Faible
+                </span>
+
+                <strong>
+                    11
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar low-bar"
+                    style="width:45%">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!--  TYPES DE MAINTENANCE -->
+
+<div class="section-title">
+
+    <h2>
+        Analyse des types de maintenance
+    </h2>
+
+</div>
+
+
+<div class="maintenance-grid">
+
+
+    <div class="maintenance-card">
+
+        <span class="maintenance-icon corrective">
+            🔴
+        </span>
+
+        <h3>
+            Corrective
+        </h3>
+
+        <strong>
+            24
+        </strong>
+
+        <p>
+            50 % des WO
+        </p>
+
+        <small>
+            Intervention après apparition
+            d'une panne.
+        </small>
+
+    </div>
+
+
+
+    <div class="maintenance-card">
+
+        <span class="maintenance-icon preventive">
+            🟢
+        </span>
+
+        <h3>
+            Préventive
+        </h3>
+
+        <strong>
+            14
+        </strong>
+
+        <p>
+            29 %
+        </p>
+
+        <small>
+            Intervention programmée
+            avant la panne.
+        </small>
+
+    </div>
+
+
+
+    <div class="maintenance-card">
+
+        <span class="maintenance-icon inspection">
+            🔵
+        </span>
+
+        <h3>
+            Inspection
+        </h3>
+
+        <strong>
+            7
+        </strong>
+
+        <p>
+            15 %
+        </p>
+
+        <small>
+            Contrôle de l'état
+            des équipements.
+        </small>
+
+    </div>
+
+
+
+    <div class="maintenance-card">
+
+        <span class="maintenance-icon revision">
+            🟠
+        </span>
+
+        <h3>
+            Révision
+        </h3>
+
+        <strong>
+            3
+        </strong>
+
+        <p>
+            6 %
+        </p>
+
+        <small>
+            Révision périodique
+            des machines.
+        </small>
+
+    </div>
+
+</div>
+
+
+
+<!-- ANALYSE EQUIPEMENTS -->
+
+<div class="section-title">
+
+    <h2>
+        Analyse des équipements
+    </h2>
+
+</div>
+
+
+<div class="analysis-grid">
+
+
+    <div class="analysis-card">
+
+        <div class="analysis-header">
+
+            <span class="analysis-icon red-icon">
+                🚜
+            </span>
+
+            <div>
+
+                <h3>
+                    Plus sollicités
+                </h3>
+
+                <p>
+                    Nombre de Work Orders
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                CAT950
+            </span>
+
+            <strong class="red">
+                11 WO
+            </strong>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                VOL-A35
+            </span>
+
+            <strong class="orange">
+                8 WO
+            </strong>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                CAT330
+            </span>
+
+            <strong>
+                6 WO
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="analysis-card">
+
+        <div class="analysis-header">
+
+            <span class="analysis-icon red-icon">
+                ⚠️
+            </span>
+
+            <div>
+
+                <h3>
+                    WO critiques
+                </h3>
+
+                <p>
+                    Par équipement
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                CAT950
+            </span>
+
+            <strong class="red">
+                3
+            </strong>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                VOL-A35
+            </span>
+
+            <strong class="orange">
+                2
+            </strong>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                CAT330
+            </span>
+
+            <strong>
+                1
+            </strong>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="analysis-card">
+
+        <div class="analysis-header">
+
+            <span class="analysis-icon orange-icon">
+                ⏱
+            </span>
+
+            <div>
+
+                <h3>
+                    Temps de maintenance
+                </h3>
+
+                <p>
+                    Immobilisation
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                CAT950
+            </span>
+
+            <strong class="red">
+                48h
+            </strong>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                VOL-A35
+            </span>
+
+            <strong class="orange">
+                36h
+            </strong>
+
+        </div>
+
+
+        <div class="analysis-item">
+
+            <span>
+                CAT330
+            </span>
+
+            <strong>
+                24h
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ANALYSE TECHNICIENS -->
+
+<div class="section-title">
+
+    <h2>
+        Analyse des techniciens
+    </h2>
+
+</div>
+
+
+<div class="technician-analysis">
+
+
+    <div class="technician-card">
+
+        <h3>
+            🏆 Techniciens les plus actifs
+        </h3>
+
+
+        <div class="ranking">
+
+            <div>
+
+                <span>
+                    1. Ndong Jean
+                </span>
+
+                <strong>
+                    15 WO
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    2. Obame Paul
+                </span>
+
+                <strong>
+                    12 WO
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    3. Essono Michel
+                </span>
+
+                <strong>
+                    9 WO
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="technician-card">
+
+        <h3>
+            ⭐ Taux de réussite
+        </h3>
+
+
+        <div class="ranking">
+
+            <div>
+
+                <span>
+                    Ndong Jean
+                </span>
+
+                <strong class="green">
+                    96 %
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Obame Paul
+                </span>
+
+                <strong class="green">
+                    93 %
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Essono Michel
+                </span>
+
+                <strong class="orange">
+                    87 %
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="technician-card">
+
+        <h3>
+            ⏱️ Temps moyen
+        </h3>
+
+
+        <div class="ranking">
+
+            <div>
+
+                <span>
+                    Ndong Jean
+                </span>
+
+                <strong>
+                    3h10
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Obame Paul
+                </span>
+
+                <strong>
+                    4h05
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Essono Michel
+                </span>
+
+                <strong>
+                    5h20
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ANALYSE TEMPORELLE -->
+
+<div class="section-title">
+
+    <h2>
+        Évolution des Work Orders
+    </h2>
+
+</div>
+
+
+<div class="chart-card timeline-card">
+
+
+    <p>
+        Nombre de Work Orders par mois
+    </p>
+
+
+    <div class="monthly-chart">
+
+
+        <div class="month">
+
+            <div
+                class="column"
+                style="height:45%">
+            </div>
+
+            <span>
+                Jan
+            </span>
+
+            <strong>
+                8
+            </strong>
+
+        </div>
+
+
+        <div class="month">
+
+            <div
+                class="column"
+                style="height:60%">
+            </div>
+
+            <span>
+                Fév
+            </span>
+
+            <strong>
+                11
+            </strong>
+
+        </div>
+
+
+        <div class="month">
+
+            <div
+                class="column"
+                style="height:75%">
+            </div>
+
+            <span>
+                Mar
+            </span>
+
+            <strong>
+                15
+            </strong>
+
+        </div>
+
+
+        <div class="month">
+
+            <div
+                class="column"
+                style="height:55%">
+            </div>
+
+            <span>
+                Avr
+            </span>
+
+            <strong>
+                10
+            </strong>
+
+        </div>
+
+
+        <div class="month">
+
+            <div
+                class="column"
+                style="height:85%">
+            </div>
+
+            <span>
+                Mai
+            </span>
+
+            <strong>
+                17
+            </strong>
+
+        </div>
+
+
+        <div class="month">
+
+            <div
+                class="column"
+                style="height:70%">
+            </div>
+
+            <span>
+                Juin
+            </span>
+
+            <strong>
+                14
+            </strong>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ANALYSE PANNES -->
+
+<div class="section-title">
+
+    <h2>
+        Analyse des pannes associées
+    </h2>
+
+</div>
+
+
+<div class="failure-grid">
+
+
+    <div class="failure-card">
+
+        <h3>
+            🔴 Pannes générant le plus de WO
+        </h3>
+
+
+        <div class="ranking">
+
+            <div>
+
+                <span>
+                    Surchauffe moteur
+                </span>
+
+                <strong class="red">
+                    8 WO
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Problème hydraulique
+                </span>
+
+                <strong class="orange">
+                    6 WO
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Problème électrique
+                </span>
+
+                <strong>
+                    5 WO
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <div class="failure-card">
+
+        <h3>
+            🔁 Pannes récurrentes
+        </h3>
+
+
+        <div class="ranking">
+
+            <div>
+
+                <span>
+                    Surchauffe moteur
+                </span>
+
+                <strong>
+                    4 répétitions
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Fuite hydraulique
+                </span>
+
+                <strong>
+                    3 répétitions
+                </strong>
+
+            </div>
+
+
+            <div>
+
+                <span>
+                    Défaut électrique
+                </span>
+
+                <strong>
+                    3 répétitions
+                </strong>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!--  INTERPRETATIONS -->
+
+<div class="interpretation">
+
+
+    <div class="interpretation-header">
+
+        <span>
+            📊
+        </span>
+
+        <div>
+
+            <h2>
+                Interprétations et recommandations
+            </h2>
+
+            <p>
+                Analyse globale des données de maintenance
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="interpretation-grid">
+
+
+        <div class="interpretation-box">
+
+            <h3 class="red">
+                ⚠️ Problème principal
+            </h3>
+
+            <p>
+
+                La maintenance corrective représente
+                <strong>50 % des Work Orders</strong>.
+
+                Cela signifie qu'une grande partie des
+                interventions intervient après
+                l'apparition d'une panne.
+
+                <br><br>
+
+                <strong>Recommandation :</strong>
+
+                renforcer les opérations préventives
+                afin de réduire les pannes imprévues.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3 class="orange">
+                🚜 Équipement à surveiller
+            </h3>
+
+            <p>
+
+                Le <strong>CAT950</strong> possède
+                <strong>11 Work Orders</strong>,
+                dont plusieurs interventions critiques.
+
+                Il représente également une part
+                importante des heures d'immobilisation.
+
+                <br><br>
+
+                <strong>Recommandation :</strong>
+
+                effectuer une analyse de fiabilité
+                de cet équipement.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3 class="green">
+                👨‍🔧 Performance des techniciens
+            </h3>
+
+            <p>
+
+                <strong>Ndong Jean</strong> réalise le
+                plus grand nombre d'interventions tout
+                en conservant un taux de réussite élevé.
+
+                <br><br>
+
+                Il pourrait être intéressant d'analyser
+                ses méthodes d'intervention afin
+                d'identifier les bonnes pratiques.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3>
+                ⏱️ Temps d'intervention
+            </h3>
+
+            <p>
+
+                Le temps moyen est de
+                <strong>4h25</strong>.
+
+                Les interventions dépassant largement
+                cette moyenne devraient être analysées.
+
+                <br><br>
+
+                Les causes peuvent être liées aux
+                pièces, aux compétences disponibles,
+                à la panne ou à l'équipement.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3 class="red">
+                🔁 Pannes récurrentes
+            </h3>
+
+            <p>
+
+                La <strong>surchauffe moteur</strong>
+                apparaît plusieurs fois et génère
+                plusieurs Work Orders.
+
+                Cela peut indiquer un problème
+                récurrent qui nécessite une analyse
+                de cause racine.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3 class="green">
+                📈 Évolution
+            </h3>
+
+            <p>
+
+                Le nombre de Work Orders varie selon
+                les mois.
+
+                Une augmentation importante peut
+                indiquer une dégradation de la
+                fiabilité du parc ou une augmentation
+                des activités de maintenance.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="table-card">
+
+    <div class="table-title">
+
+        <h2>
+            Liste des Work Orders
+        </h2>
+
+        <p>
+            Données détaillées des interventions
+        </p>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>
+                        Code
+                    </th>
+
+                    <th>
+                        Équipement
+                    </th>
+
+                    <th>
+                        Panne
+                    </th>
+
+                    <th>
+                        Technicien
+                    </th>
+
+                    <th>
+                        Type
+                    </th>
+
+                    <th>
+                        Priorité
+                    </th>
+
+                    <th>
+                        Durée
+                    </th>
+
+                    <th>
+                        Statut
+                    </th>
+
+                    <th>
+                        Historique
+                    </th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="workOrderTable">
+
+
+                <tr>
+
+                    <td>
+                        WO-001
+                    </td>
+
+                    <td>
+                        CAT950
+                    </td>
+
+                    <td>
+                        Surchauffe moteur
+                    </td>
+
+                    <td>
+                        T001
+                    </td>
+
+                    <td>
+                        Corrective
+                    </td>
+
+                    <td>
+
+                        <span class="badge critical">
+                            Critique
+                        </span>
+
+                    </td>
+
+                    <td>
+                        6h20
+                    </td>
+
+                    <td>
+
+                        <span class="badge progress">
+                            En cours
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="historique.html"
+                            class="btn-view">
+
+                            Voir
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>
+                        WO-002
+                    </td>
+
+                    <td>
+                        CAT320
+                    </td>
+
+                    <td>
+                        Vidange
+                    </td>
+
+                    <td>
+                        T002
+                    </td>
+
+                    <td>
+                        Préventive
+                    </td>
+
+                    <td>
+
+                        <span class="badge medium">
+                            Moyenne
+                        </span>
+
+                    </td>
+
+                    <td>
+                        3h10
+                    </td>
+
+                    <td>
+
+                        <span class="badge completed">
+                            Terminé
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="historique.html"
+                            class="btn-view">
+
+                            Voir
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>
+                        WO-003
+                    </td>
+
+                    <td>
+                        VOL-A35
+                    </td>
+
+                    <td>
+                        Fuite hydraulique
+                    </td>
+
+                    <td>
+                        T003
+                    </td>
+
+                    <td>
+                        Corrective
+                    </td>
+
+                    <td>
+
+                        <span class="badge high">
+                            Haute
+                        </span>
+
+                    </td>
+
+                    <td>
+                        7h40
+                    </td>
+
+                    <td>
+
+                        <span class="badge late">
+                            En retard
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a
+                            href="historique.html"
+                            class="btn-view">
+
+                            Voir
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+</section>
+
+</main>
+
+
+
+<!-- =====================================================
+     MODAL
+===================================================== -->
+
+<div
+    id="modalWO"
+    class="modal">
+
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Nouveau Work Order
+                </h2>
+
+                <p>
+                    Créer une nouvelle intervention
+                </p>
+
+            </div>
+
+
+            <button
+                class="close-button"
+                onclick="fermerFormulaire()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+
+        <form
+            id="workOrderForm"
+            onsubmit="ajouterWorkOrder(event)">
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        Code Work Order
+                    </label>
+
+                    <input
+                        id="woCode"
+                        type="text"
+                        placeholder="Ex : WO-004"
+                        required>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Équipement
+                    </label>
+
+                    <select
+                        id="woEquipment"
+                        required>
+
+                        <option value="">
+                            Sélectionner
+                        </option>
+
+                        <option>
+                            CAT950
+                        </option>
+
+                        <option>
+                            CAT320
+                        </option>
+
+                        <option>
+                            VOL-A35
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Panne
+                    </label>
+
+                    <select
+                        id="woFailure">
+
+                        <option>
+                            Surchauffe moteur
+                        </option>
+
+                        <option>
+                            Fuite hydraulique
+                        </option>
+
+                        <option>
+                            Problème électrique
+                        </option>
+
+                        <option>
+                            Vidange
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Technicien
+                    </label>
+
+                    <select
+                        id="woTechnician"
+                        required>
+
+                        <option value="">
+                            Sélectionner
+                        </option>
+
+                        <option>
+                            T001 - Ndong Jean
+                        </option>
+
+                        <option>
+                            T002 - Obame Paul
+                        </option>
+
+                        <option>
+                            T003 - Essono Michel
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Type de maintenance
+                    </label>
+
+                    <select
+                        id="woType"
+                        required>
+
+                        <option>
+                            Corrective
+                        </option>
+
+                        <option>
+                            Préventive
+                        </option>
+
+                        <option>
+                            Inspection
+                        </option>
+
+                        <option>
+                            Révision
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Priorité
+                    </label>
+
+                    <select id="woPriority">
+
+                        <option>
+                            Faible
+                        </option>
+
+                        <option>
+                            Moyenne
+                        </option>
+
+                        <option>
+                            Haute
+                        </option>
+
+                        <option>
+                            Critique
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Statut
+                    </label>
+
+                    <select id="woStatus">
+
+                        <option>
+                            Planifié
+                        </option>
+
+                        <option>
+                            En cours
+                        </option>
+
+                        <option>
+                            Terminé
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Date de début
+                    </label>
+
+                    <input
+                        type="datetime-local"
+                        id="woStart">
+
+                </div>
+
+
+
+                <div class="form-group">
+
+                    <label>
+                        Date prévue de fin
+                    </label>
+
+                    <input
+                        type="datetime-local"
+                        id="woEnd">
+
+                </div>
+
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        rows="4"
+                        placeholder="Description de l'intervention..."></textarea>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="form-footer">
+
+                <button
+                    type="button"
+                    class="btn-cancel"
+                    onclick="fermerFormulaire()">
+
+                    Annuler
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-save">
+
+                    Enregistrer
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<script>
+
+
+/* OUVRIR FORMULAIRE */
+
+function ouvrirFormulaire() {
+
+    document
+        .getElementById("modalWO")
+        .classList.add("show");
+
+}
+
+
+/* FERMER FORMULAIRE */
+
+function fermerFormulaire() {
+
+    document
+        .getElementById("modalWO")
+        .classList.remove("show");
+
+}
+
+
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "input",
+        function() {
+
+
+            const recherche =
+                this.value.toLowerCase();
+
+
+            const lignes =
+                document.querySelectorAll(
+                    "#workOrderTable tr"
+                );
+
+
+            lignes.forEach(
+                function(ligne) {
+
+
+                    const texte =
+                        ligne.textContent
+                            .toLowerCase();
+
+
+                    if (
+                        texte.includes(recherche)
+                    ) {
+
+                        ligne.style.display = "";
+
+                    }
+
+                    else {
+
+                        ligne.style.display = "none";
+
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+
+
+function ajouterWorkOrder(event) {
+
+    event.preventDefault();
+
+
+    const code =
+        document.getElementById(
+            "woCode"
+        ).value;
+
+
+    const equipment =
+        document.getElementById(
+            "woEquipment"
+        ).value;
+
+
+    const failure =
+        document.getElementById(
+            "woFailure"
+        ).value;
+
+
+    const technician =
+        document.getElementById(
+            "woTechnician"
+        ).value;
+
+
+    const type =
+        document.getElementById(
+            "woType"
+        ).value;
+
+
+    const priority =
+        document.getElementById(
+            "woPriority"
+        ).value;
+
+
+    const status =
+        document.getElementById(
+            "woStatus"
+        ).value;
+
+
+
+    let priorityClass =
+        "medium";
+
+
+    if (
+        priority === "Faible"
+    ) {
+
+        priorityClass =
+            "low";
+
+    }
+
+
+    if (
+        priority === "Haute"
+    ) {
+
+        priorityClass =
+            "high";
+
+    }
+
+
+    if (
+        priority === "Critique"
+    ) {
+
+        priorityClass =
+            "critical";
+
+    }
+
+
+
+    let statusClass =
+        "planned";
+
+
+    if (
+        status === "En cours"
+    ) {
+
+        statusClass =
+            "progress";
+
+    }
+
+
+    if (
+        status === "Terminé"
+    ) {
+
+        statusClass =
+            "completed";
+
+    }
+
+
+
+    const ligne =
+        document.createElement("tr");
+
+
+    ligne.innerHTML = `
+
+        <td>
+            ${code}
+        </td>
+
+        <td>
+            ${equipment}
+        </td>
+
+        <td>
+            ${failure}
+        </td>
+
+        <td>
+            ${technician}
+        </td>
+
+        <td>
+            ${type}
+        </td>
+
+        <td>
+
+            <span
+                class="badge ${priorityClass}">
+
+                ${priority}
+
+            </span>
+
+        </td>
+
+        <td>
+            -
+        </td>
+
+        <td>
+
+            <span
+                class="badge ${statusClass}">
+
+                ${status}
+
+            </span>
+
+        </td>
+
+        <td>
+
+            <a
+                href="historique.html"
+                class="btn-view">
+
+                Voir
+
+            </a>
+
+        </td>
+
+    `;
+
+
+    document
+        .getElementById(
+            "workOrderTable"
+        )
+        .appendChild(ligne);
+
+
+    const total =
+        document.querySelectorAll(
+            "#workOrderTable tr"
+        ).length;
+
+
+    document
+        .getElementById(
+            "totalWO"
+        )
+        .textContent = total;
+
+
+    document
+        .getElementById(
+            "workOrderForm"
+        )
+        .reset();
+
+
+    fermerFormulaire();
+
+
+    alert(
+        "Work Order ajouté avec succès !"
+    );
+
+}
+
+
+
+/* FERMER MODAL EN CLIQUANT DEHORS */
+
+document
+    .getElementById("modalWO")
+    .addEventListener(
+        "click",
+        function(event) {
+
+
+            if (
+                event.target === this
+            ) {
+
+                fermerFormulaire();
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>

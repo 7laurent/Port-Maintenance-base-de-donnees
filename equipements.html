@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>OMP Maintenance - Équipements</title>
+
+    <link rel="stylesheet"
+          href="equipements.css">
+
+</head>
+
+
+<body>
+
+
+<aside class="sidebar">
+
+    <h2>GESTION</h2>
+
+    <nav>
+
+        <a href="dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="workorder.html">
+            Work Orders
+        </a>
+
+        <a href="equipements.html"
+           class="active">
+            Équipements
+        </a>
+
+        <a href="technicien.html">
+            Techniciens
+        </a>
+
+        <a href="pieces.html">
+            Pièces
+        </a>
+
+        <a href="pannes.html">
+            Pannes
+        </a>
+
+        <a href="historique.html">
+            Historique
+        </a>
+
+        <a href="parametres.html">
+            Paramètres
+        </a>
+
+    </nav>
+
+</aside>
+
+
+
+
+<main class="main-content">
+
+<header class="top-header">
+
+    <div class="logo">
+        OMP
+    </div>
+
+    <div>
+
+        <h2>Machines</h2>
+
+        <p>Maintenance</p>
+
+    </div>
+
+    <div class="administrator">
+        Administrateur
+    </div>
+
+</header>
+
+
+
+<section class="page">
+
+
+
+<div class="page-header">
+
+    <div>
+
+        <h1>Équipements</h1>
+
+        <p>
+            Analyse et suivi de la performance
+            des machines de maintenance
+        </p>
+
+    </div>
+
+
+    <div class="actions">
+
+        <a href="historique.html"
+           class="btn-history">
+
+            Historique
+
+        </a>
+
+
+        <button
+            class="btn-add"
+            onclick="ouvrirFormulaire()">
+
+            + Nouvel équipement
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<div class="search-box">
+
+    <span>🔎</span>
+
+    <input
+        type="text"
+        id="searchInput"
+        placeholder="Rechercher par ID, code, type, marque ou modèle...">
+
+</div>
+
+
+
+<!--  STATISTIQUES PRINCIPALES -->
+
+<div class="stats-grid">
+
+
+    <div class="stat-card">
+
+        <span>
+            Total machines
+        </span>
+
+        <strong id="totalEquipements">
+            24
+        </strong>
+
+        <small>
+            Équipements enregistrés
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            Disponibilité moyenne
+        </span>
+
+        <strong class="green">
+            87%
+        </strong>
+
+        <small>
+            Disponibilité du parc
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            Équipements efficaces
+        </span>
+
+        <strong class="green">
+            16
+        </strong>
+
+        <small>
+            Disponibilité supérieure à 90%
+        </small>
+
+    </div>
+
+
+    <div class="stat-card">
+
+        <span>
+            À surveiller
+        </span>
+
+        <strong class="red">
+            4
+        </strong>
+
+        <small>
+            Disponibilité inférieure à 70%
+        </small>
+
+    </div>
+
+</div>
+
+
+<div class="charts-grid">
+
+
+<!-- ETAT DU PARC -->
+
+<div class="chart-card">
+
+    <h2>
+        État du parc
+    </h2>
+
+    <p>
+        Répartition des machines
+    </p>
+
+
+    <div class="donut-container">
+
+        <div class="donut">
+
+            <div class="donut-center">
+
+                <strong>
+                    24
+                </strong>
+
+                <span>
+                    machines
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="legend">
+
+            <div>
+                <span class="dot green-dot"></span>
+
+                Opérationnels
+
+                <strong>
+                    18
+                </strong>
+            </div>
+
+
+            <div>
+                <span class="dot orange-dot"></span>
+
+                En maintenance
+
+                <strong>
+                    4
+                </strong>
+            </div>
+
+
+            <div>
+                <span class="dot red-dot"></span>
+
+                En panne
+
+                <strong>
+                    2
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- DISPONIBILITE -->
+
+<div class="chart-card">
+
+    <h2>
+        Disponibilité des équipements
+    </h2>
+
+    <p>
+        Comparaison de la disponibilité
+    </p>
+
+
+    <div class="availability-list">
+
+
+        <div class="availability-item">
+
+            <div>
+
+                <span>
+                    CAT320
+                </span>
+
+                <strong>
+                    98%
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar excellent"
+                    style="width:98%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="availability-item">
+
+            <div>
+
+                <span>
+                    VOL-A40
+                </span>
+
+                <strong>
+                    95%
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar excellent"
+                    style="width:95%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="availability-item">
+
+            <div>
+
+                <span>
+                    TOY-HLX
+                </span>
+
+                <strong>
+                    82%
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar good"
+                    style="width:82%">
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="availability-item">
+
+            <div>
+
+                <span>
+                    CAT950
+                </span>
+
+                <strong>
+                    61%
+                </strong>
+
+            </div>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar bad"
+                    style="width:61%">
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<!-- PERFORMANCE -->
+
+<h2 class="section-title">
+    Analyse de performance
+</h2>
+
+
+<div class="performance-grid">
+
+
+<!-- PLUS EFFICACES -->
+
+<div class="performance-card">
+
+    <div class="performance-header">
+
+        <span class="icon green-icon">
+            ★
+        </span>
+
+        <div>
+
+            <h3>
+                Équipements les plus efficaces
+            </h3>
+
+            <p>
+                Meilleure disponibilité
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            1. CAT320
+        </span>
+
+        <strong class="green">
+            98%
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            2. VOL-A40
+        </span>
+
+        <strong class="green">
+            95%
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            3. TOY-HLX
+        </span>
+
+        <strong class="green">
+            82%
+        </strong>
+
+    </div>
+
+</div>
+
+
+
+<!-- MOINS EFFICACES -->
+
+<div class="performance-card">
+
+    <div class="performance-header">
+
+        <span class="icon red-icon">
+            !
+        </span>
+
+        <div>
+
+            <h3>
+                Équipements les moins efficaces
+            </h3>
+
+            <p>
+                Faible disponibilité
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            1. CAT950
+        </span>
+
+        <strong class="red">
+            61%
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            2. VOL-A35
+        </span>
+
+        <strong class="red">
+            64%
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            3. CAT330
+        </span>
+
+        <strong class="orange">
+            69%
+        </strong>
+
+    </div>
+
+</div>
+
+
+
+<!-- MAINTENANCE -->
+
+<div class="performance-card">
+
+    <div class="performance-header">
+
+        <span class="icon orange-icon">
+            🔧
+        </span>
+
+        <div>
+
+            <h3>
+                Plus souvent en maintenance
+            </h3>
+
+            <p>
+                Nombre d'interventions
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            CAT950
+        </span>
+
+        <strong class="orange">
+            8 fois
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            VOL-A35
+        </span>
+
+        <strong class="orange">
+            6 fois
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            CAT330
+        </span>
+
+        <strong class="orange">
+            5 fois
+        </strong>
+
+    </div>
+
+</div>
+
+
+
+<!-- PANNES -->
+
+<div class="performance-card">
+
+    <div class="performance-header">
+
+        <span class="icon red-icon">
+            ⚠
+        </span>
+
+        <div>
+
+            <h3>
+                Plus souvent en panne
+            </h3>
+
+            <p>
+                Nombre de pannes
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            CAT950
+        </span>
+
+        <strong class="red">
+            5 pannes
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            VOL-A35
+        </span>
+
+        <strong class="red">
+            4 pannes
+        </strong>
+
+    </div>
+
+
+    <div class="performance-item">
+
+        <span>
+            CAT330
+        </span>
+
+        <strong class="orange">
+            3 pannes
+        </strong>
+
+    </div>
+
+</div>
+
+</div>
+
+
+
+<div class="interpretation">
+
+    <div class="interpretation-header">
+
+        <span>
+            
+        </span>
+
+        <div>
+
+            <h2>
+                Interprétation des performances
+            </h2>
+
+            <p>
+                Analyse des indicateurs du parc
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="interpretation-grid">
+
+
+        <div class="interpretation-box">
+
+            <h3 class="green">
+                🟢 Machines le plus performant
+            </h3>
+
+            <p>
+
+                <strong>CAT320</strong> possède une
+                disponibilité de <strong>98%</strong>.
+                Il s'agit actuellement de l'équipement
+                le plus fiable du parc.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3 class="red">
+                🔴 Machines à risque
+            </h3>
+
+            <p>
+
+                <strong>CAT950</strong> présente une
+                disponibilité de seulement
+                <strong>61%</strong>.
+
+                Il est également la machine qui
+                connaît le plus de pannes.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3 class="orange">
+                🟠 Maintenance importante
+            </h3>
+
+            <p>
+
+                <strong>CAT950</strong> a subi
+                <strong>8 interventions</strong>.
+                Cela peut indiquer un problème
+                récurrent nécessitant une analyse
+                approfondie.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="interpretation-box">
+
+            <h3>
+                📈 Situation générale
+            </h3>
+
+            <p>
+
+                La disponibilité moyenne du parc est
+                estimée à <strong>87%</strong>.
+
+                La majorité des machines sont
+                opérationnels, mais certains équipements
+                nécessitent une surveillance renforcée.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="table-card">
+
+    <div class="table-title">
+
+        <h2>
+            Liste des machines
+        </h2>
+
+        <p>
+            Suivi détaillé des machines
+        </p>
+
+    </div>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Code</th>
+
+                    <th>Type</th>
+
+                    <th>Marque</th>
+
+                    <th>Modèle</th>
+
+                    <th>Disponibilité</th>
+
+                    <th>Pannes</th>
+
+                    <th>Maintenance</th>
+
+                    <th>État</th>
+
+                    <th>Historique</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody id="equipmentTable">
+
+
+                <tr>
+
+                    <td>1</td>
+
+                    <td>CAT320</td>
+
+                    <td>Excavatrice</td>
+
+                    <td>Caterpillar</td>
+
+                    <td>320D</td>
+
+                    <td>
+                        <strong class="green">
+                            98%
+                        </strong>
+                    </td>
+
+                    <td>1</td>
+
+                    <td>2</td>
+
+                    <td>
+
+                        <span class="badge operational">
+                            Opérationnel
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a href="historique.html"
+                           class="btn-view">
+
+                            Voir
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>2</td>
+
+                    <td>TOY-HLX</td>
+
+                    <td>Véhicule</td>
+
+                    <td>Toyota</td>
+
+                    <td>Hilux</td>
+
+                    <td>
+                        <strong class="green">
+                            82%
+                        </strong>
+                    </td>
+
+                    <td>2</td>
+
+                    <td>4</td>
+
+                    <td>
+
+                        <span class="badge maintenance">
+                            Maintenance
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a href="historique.html"
+                           class="btn-view">
+
+                            Voir
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>3</td>
+
+                    <td>VOL-A40</td>
+
+                    <td>Chargeuse</td>
+
+                    <td>Volvo</td>
+
+                    <td>A40</td>
+
+                    <td>
+                        <strong class="green">
+                            95%
+                        </strong>
+                    </td>
+
+                    <td>1</td>
+
+                    <td>1</td>
+
+                    <td>
+
+                        <span class="badge operational">
+                            Opérationnel
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a href="historique.html"
+                           class="btn-view">
+
+                            Voir
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+
+
+                <tr>
+
+                    <td>4</td>
+
+                    <td>CAT950</td>
+
+                    <td>Chargeuse</td>
+
+                    <td>Caterpillar</td>
+
+                    <td>950M</td>
+
+                    <td>
+                        <strong class="red">
+                            61%
+                        </strong>
+                    </td>
+
+                    <td>5</td>
+
+                    <td>8</td>
+
+                    <td>
+
+                        <span class="badge panne">
+                            En panne
+                        </span>
+
+                    </td>
+
+                    <td>
+
+                        <a href="historique.html"
+                           class="btn-view">
+
+                            Voir
+
+                        </a>
+
+                    </td>
+
+                </tr>
+
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+</section>
+
+</main>
+
+
+
+<!-- FORMULAIRE-->
+
+<div
+    id="modalEquipement"
+    class="modal">
+
+
+    <div class="modal-content">
+
+
+        <div class="modal-header">
+
+            <div>
+
+                <h2>
+                    Nouvel machines
+                </h2>
+
+                <p>
+                    Ajouter un machine au parc
+                </p>
+
+            </div>
+
+
+            <button
+                class="close-button"
+                onclick="fermerFormulaire()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+
+        <form
+            id="equipmentForm"
+            onsubmit="ajoutermachines(event)">
+
+
+            <div class="form-grid">
+
+
+                <div class="form-group">
+
+                    <label>
+                        ID machine
+                    </label>
+
+                    <input
+                        id="MachineId"
+                        type="text"
+                        placeholder="Ex : 5"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Code équipement
+                    </label>
+
+                    <input
+                        id="machineCode"
+                        type="text"
+                        placeholder="Ex : CAT980"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Type
+                    </label>
+
+                    <select
+                        id="machinesType"
+                        required>
+
+                        <option value="">
+                            Sélectionner
+                        </option>
+
+                        <option>
+                            Véhicule
+                        </option>
+
+                        <option>
+                            Excavatrice
+                        </option>
+
+                        <option>
+                            Chargeuse
+                        </option>
+
+                        <option>
+                            Camion
+                        </option>
+
+                        <option>
+                            Bulldozer
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Marque
+                    </label>
+
+                    <input
+                        id="machineBrand"
+                        type="text"
+                        placeholder="Ex : Caterpillar"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Modèle
+                    </label>
+
+                    <input
+                        id="machineModel"
+                        type="text"
+                        placeholder="Ex : 950M"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        État
+                    </label>
+
+                    <select
+                        id="machinesStatus">
+
+                        <option>
+                            Opérationnel
+                        </option>
+
+                        <option>
+                            En maintenance
+                        </option>
+
+                        <option>
+                            En panne
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Date de mise en service
+                    </label>
+
+                    <input
+                        type="date"
+                        id="machineDate">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Localisation
+                    </label>
+
+                    <input
+                        type="text"
+                        id="machineLocation"
+                        placeholder="Ex : Site principal">
+
+                </div>
+
+
+                <div class="form-group full">
+
+                    <label>
+                        Description
+                    </label>
+
+                    <textarea
+                        id="machinesDescription"
+                        rows="4"
+                        placeholder="Description de l'machines..."></textarea>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="form-footer">
+
+                <button
+                    type="button"
+                    class="btn-cancel"
+                    onclick="fermerFormulaire()">
+
+                    Annuler
+
+                </button>
+
+
+                <button
+                    type="submit"
+                    class="btn-save">
+
+                    Enregistrer
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- JAVASCRIPT -->
+
+<script>
+
+
+/* OUVRIR */
+
+function ouvrirFormulaire() {
+
+    document
+        .getElementById("modalMachines")
+        .classList.add("show");
+
+}
+
+
+
+/* FERMER */
+
+function fermerFormulaire() {
+
+    document
+        .getElementById("modalMachines")
+        .classList.remove("show");
+
+}
+
+
+
+/* RECHERCHE*/
+
+document
+    .getElementById("searchInput")
+    .addEventListener("input", function () {
+
+        const recherche =
+            this.value.toLowerCase();
+
+        const lignes =
+            document.querySelectorAll(
+                "#MachinesTable tr"
+            );
+
+
+        lignes.forEach(function (ligne) {
+
+            const contenu =
+                ligne.textContent.toLowerCase();
+
+            if (
+                contenu.includes(recherche)
+            ) {
+
+                ligne.style.display = "";
+
+            } else {
+
+                ligne.style.display = "none";
+
+            }
+
+        });
+
+    });
+
+
+
+/*  AJOUT EQUIPEMENT */
+
+function ajouterEquipement(event) {
+
+    event.preventDefault();
+
+
+    const id =
+        document.getElementById(
+            "MachineId"
+        ).value;
+
+
+    const code =
+        document.getElementById(
+            "MachineCode"
+        ).value;
+
+
+    const type =
+        document.getElementById(
+            "MachineType"
+        ).value;
+
+
+    const marque =
+        document.getElementById(
+            "MachineBrand"
+        ).value;
+
+
+    const modele =
+        document.getElementById(
+            "MachineModel"
+        ).value;
+
+
+    const etat =
+        document.getElementById(
+            "MachineStatus"
+        ).value;
+
+
+
+    let classe = "operational";
+
+
+    if (
+        etat === "En maintenance"
+    ) {
+
+        classe = "maintenance";
+
+    }
+
+
+    if (
+        etat === "En panne"
+    ) {
+
+        classe = "panne";
+
+    }
+
+
+
+    const ligne =
+        document.createElement("tr");
+
+
+    ligne.innerHTML = `
+
+        <td>${id}</td>
+
+        <td>${code}</td>
+
+        <td>${type}</td>
+
+        <td>${marque}</td>
+
+        <td>${modele}</td>
+
+        <td>
+            <strong>
+                100%
+            </strong>
+        </td>
+
+        <td>
+            0
+        </td>
+
+        <td>
+            0
+        </td>
+
+        <td>
+
+            <span class="badge ${classe}">
+                ${etat}
+            </span>
+
+        </td>
+
+        <td>
+
+            <a
+                href="historique.html"
+                class="btn-view">
+
+                Voir
+
+            </a>
+
+        </td>
+
+    `;
+
+
+    document
+        .getElementById(
+            "MachineTable"
+        )
+        .appendChild(ligne);
+
+
+    /* Mise à jour du total */
+
+    const total =
+        document.querySelectorAll(
+            "#MachineTable tr"
+        ).length;
+
+
+    document
+        .getElementById(
+            "totalMachines"
+        )
+        .textContent = total;
+
+
+    /* Reset */
+
+    document
+        .getElementById(
+            "MachineForm"
+        )
+        .reset();
+
+
+    fermerFormulaire();
+
+
+    alert(
+        "Machine ajouté avec succès !"
+    );
+
+}
+
+
+
+/* FERMER EN CLIQUANT A L'EXTERIEUR */
+
+document
+    .getElementById(
+        "modalMachines"
+    )
+    .addEventListener(
+        "click",
+        function(event) {
+
+            if (
+                event.target === this
+            ) {
+
+                fermerFormulaire();
+
+            }
+
+        }
+    );
+
+
+</script>
+
+
+</body>
+
+</html>
