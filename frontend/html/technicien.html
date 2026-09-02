@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OMP Maintenance - Techniciens</title>
+    <link rel="stylesheet" href="../css/technicien.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <img src="../images/pl.png" alt="Logo OMP">
+
+            <div>
+                <strong>OMP</strong>
+                <span>Maintenance</span>
+            </div>
+        </div>
+
+        <nav class="nav">
+
+            <a href="dashboard.html">
+                <span>⌂</span> Dashboard
+            </a>
+
+            <a href="pannes.html">
+                <span>⚠</span> Pannes
+            </a>
+
+            <a href="work-order.html">
+                <span>▣</span> Work Orders
+            </a>
+
+            <a href="equipements.html">
+                <span>⚙</span> Équipements
+            </a>
+
+            <a href="pieces.html">
+                <span>▤</span> Pièces
+            </a>
+
+            <a href="technicien.html" class="active">
+                <span>♙</span> Techniciens
+            </a>
+
+            <a href="historique.html">
+                <span>↺</span> Historique
+            </a>
+
+            <a href="parametres.html">
+                <span>⚙</span> Paramètres
+            </a>
+
+        </nav>
+
+        <div class="system-status">
+            <span class="status-dot"></span>
+
+            <div>
+                <strong>Système opérationnel</strong>
+                <small>Dernière synchronisation : maintenant</small>
+            </div>
+        </div>
+
+        <a href="dashboard.html" class="home-link">
+            ← Retour à l'accueil
+        </a>
+
+    </aside>
+
+
+    <!-- MAIN -->
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+                <small>MAINTENANCE / RESSOURCES HUMAINES</small>
+                <h1>Techniciens</h1>
+            </div>
+
+            <div class="profile">
+
+                <div class="avatar">AD</div>
+
+                <div>
+                    <strong>Administrateur</strong>
+                    <small>Administration</small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="content">
+
+            <!-- HEADER -->
+
+            <div class="page-header">
+
+                <div>
+                    <span class="eyebrow">
+                        ÉQUIPE TECHNIQUE
+                    </span>
+
+                    <h2>
+                        Gestion des techniciens
+                    </h2>
+
+                    <p>
+                        Gérez les techniciens, leurs compétences,
+                        spécialités et interventions.
+                    </p>
+                </div>
+
+                <div class="header-buttons">
+
+                    <button
+                        id="historyBtn"
+                        class="btn secondary">
+                        ↺ Historique
+                    </button>
+
+                    <button
+                        id="addBtn"
+                        class="btn primary">
+                        ＋ Nouveau technicien
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- STATISTIQUES -->
+
+            <div class="stats">
+
+                <div class="stat-card">
+                    <span>Total techniciens</span>
+                    <strong id="totalTechnicians">0</strong>
+                    <small>Techniciens enregistrés</small>
+                </div>
+
+                <div class="stat-card">
+                    <span>Actifs</span>
+                    <strong id="activeTechnicians">0</strong>
+                    <small>Techniciens disponibles</small>
+                </div>
+
+                <div class="stat-card">
+                    <span>En intervention</span>
+                    <strong id="busyTechnicians">0</strong>
+                    <small>Interventions en cours</small>
+                </div>
+
+                <div class="stat-card">
+                    <span>Work Orders</span>
+                    <strong id="totalOrders">0</strong>
+                    <small>Interventions réalisées</small>
+                </div>
+
+            </div>
+
+
+            <!-- RECHERCHE -->
+
+            <div class="search-card">
+
+                <div class="search-title">
+
+                    <strong>
+                        Rechercher un technicien
+                    </strong>
+
+                    <span>
+                        Nom, matricule, spécialité,
+                        service ou téléphone
+                    </span>
+
+                </div>
+
+                <div class="search-row">
+
+                    <input
+                        id="searchInput"
+                        type="search"
+                        placeholder="Ex. TECH-001, mécanique, Jean...">
+
+                    <button
+                        id="searchBtn"
+                        class="btn primary">
+                        ⌕ Rechercher
+                    </button>
+
+                    <button
+                        id="clearBtn"
+                        class="btn light">
+                        Effacer
+                    </button>
+
+                </div>
+
+                <div
+                    id="searchResults"
+                    class="search-results">
+                </div>
+
+            </div>
+
+
+            <!-- FILTRES -->
+
+            <div class="toolbar">
+
+                <div>
+
+                    <button
+                        class="filter active"
+                        data-filter="all">
+                        Tous
+                    </button>
+
+                    <button
+                        class="filter"
+                        data-filter="active">
+                        Actifs
+                    </button>
+
+                    <button
+                        class="filter"
+                        data-filter="busy">
+                        En intervention
+                    </button>
+
+                    <button
+                        class="filter"
+                        data-filter="inactive">
+                        Inactifs
+                    </button>
+
+                </div>
+
+                <button
+                    id="zoomTableBtn"
+                    class="zoom-btn">
+                    ⛶ Agrandir la liste
+                </button>
+
+            </div>
+
+
+            <!-- GRAPHIQUES -->
+
+            <div class="dashboard-grid">
+
+                <div class="card chart-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <span class="eyebrow">PERFORMANCE</span>
+                            <h3>Work Orders par technicien</h3>
+                        </div>
+
+                        <button
+                            id="zoomChartBtn"
+                            class="zoom-btn">
+                            ⛶ Zoom
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="technicianChart"
+                        class="bars">
+                    </div>
+
+                </div>
+
+
+                <div class="card status-card">
+
+                    <div class="card-header">
+
+                        <div>
+                            <span class="eyebrow">ÉQUIPE</span>
+                            <h3>Statut des techniciens</h3>
+                        </div>
+
+                        <button
+                            id="zoomStatusBtn"
+                            class="zoom-btn">
+                            ⛶ Zoom
+                        </button>
+
+                    </div>
+
+                    <div
+                        id="technicianDonut"
+                        class="donut">
+
+                        <div>
+                            <strong id="activePercent">0%</strong>
+                            <small>actifs</small>
+                        </div>
+
+                    </div>
+
+                    <div class="status-list">
+
+                        <span>
+                            <i class="green-dot"></i>
+                            Actifs
+                            <b id="activeCount">0</b>
+                        </span>
+
+                        <span>
+                            <i class="orange-dot"></i>
+                            En intervention
+                            <b id="busyCount">0</b>
+                        </span>
+
+                        <span>
+                            <i class="red-dot"></i>
+                            Inactifs
+                            <b id="inactiveCount">0</b>
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="card table-card">
+
+                <div class="card-header">
+
+                    <div>
+                        <span class="eyebrow">PERSONNEL</span>
+                        <h3>Liste des techniciens</h3>
+                    </div>
+
+                    <span
+                        id="tableCount"
+                        class="count">
+                        0 technicien
+                    </span>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+                                <th>Matricule</th>
+                                <th>Technicien</th>
+                                <th>Service</th>
+                                <th>Spécialité</th>
+                                <th>Niveau</th>
+                                <th>Work Orders</th>
+                                <th>Statut</th>
+                                <th>Actions</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="techniciansTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- MODAL AJOUT -->
+
+<div id="technicianModal" class="modal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            data-close="technicianModal">
+            ×
+        </button>
+
+        <span class="eyebrow">
+            NOUVEAU TECHNICIEN
+        </span>
+
+        <h2>
+            Ajouter un technicien
+        </h2>
+
+        <form id="technicianForm">
+
+            <div class="form-grid">
+
+                <label>
+                    Matricule
+                    <input
+                        name="matricule"
+                        required
+                        placeholder="TECH-001">
+                </label>
+
+                <label>
+                    Prénom
+                    <input
+                        name="firstName"
+                        required
+                        placeholder="Jean">
+                </label>
+
+                <label>
+                    Nom
+                    <input
+                        name="lastName"
+                        required
+                        placeholder="Mba">
+                </label>
+
+                <label>
+                    Téléphone
+                    <input
+                        name="phone"
+                        placeholder="+241 06 00 00 00">
+                </label>
+
+                <label>
+                    Email
+                    <input
+                        name="email"
+                        type="email"
+                        placeholder="technicien@omp.ga">
+                </label>
+
+                <label>
+                    Service
+                    <select name="service">
+                        <option>Maintenance mécanique</option>
+                        <option>Maintenance électrique</option>
+                        <option>Hydraulique</option>
+                        <option>Magasin</option>
+                        <option>Production</option>
+                    </select>
+                </label>
+
+                <label>
+                    Spécialité
+                    <select name="speciality">
+                        <option>Mécanique</option>
+                        <option>Électricité</option>
+                        <option>Hydraulique</option>
+                        <option>Électronique</option>
+                        <option>Soudure</option>
+                    </select>
+                </label>
+
+                <label>
+                    Niveau
+                    <select name="level">
+                        <option>Junior</option>
+                        <option>Intermédiaire</option>
+                        <option>Senior</option>
+                        <option>Expert</option>
+                    </select>
+                </label>
+
+                <label>
+                    Date d'embauche
+                    <input
+                        name="hireDate"
+                        type="date">
+                </label>
+
+                <label>
+                    Statut
+                    <select name="status">
+                        <option>Actif</option>
+                        <option>En intervention</option>
+                        <option>Inactif</option>
+                    </select>
+                </label>
+
+            </div>
+
+            <label class="full-field">
+                Compétences
+                <textarea
+                    name="skills"
+                    rows="3"
+                    placeholder="Moteur, freinage, diagnostic..."></textarea>
+            </label>
+
+            <label class="full-field">
+                Certifications
+                <textarea
+                    name="certifications"
+                    rows="3"
+                    placeholder="Certifications et habilitations..."></textarea>
+            </label>
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn light"
+                    data-close="technicianModal">
+                    Annuler
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn primary">
+                    Enregistrer
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL DETAILS -->
+
+<div id="detailsModal" class="modal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            data-close="detailsModal">
+            ×
+        </button>
+
+        <span class="eyebrow">PROFIL</span>
+
+        <h2 id="detailTitle">
+            Technicien
+        </h2>
+
+        <div
+            id="detailContent"
+            class="detail-grid">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- MODAL ZOOM -->
+
+<div id="zoomModal" class="modal">
+
+    <div class="modal-box zoom-box">
+
+        <button
+            class="close"
+            data-close="zoomModal">
+            ×
+        </button>
+
+        <h2 id="zoomTitle">
+            Vue agrandie
+        </h2>
+
+        <div id="zoomContent"></div>
+
+    </div>
+
+</div>
+
+
+<script src="../js/technicien.js"></script>
+
+</body>
+</html>

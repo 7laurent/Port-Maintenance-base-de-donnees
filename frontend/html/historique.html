@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        OMP Maintenance - Historique
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/historique.css">
+
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <img
+                src="../images/pl.png"
+                alt="Logo OMP">
+
+            <div>
+                <strong>OMP</strong>
+                <span>Maintenance</span>
+            </div>
+
+        </div>
+
+
+        <nav class="nav">
+
+            <a href="dashboard.html">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="pannes.html">
+                <span>⚠</span>
+                Pannes
+            </a>
+
+            <a href="workorder.html">
+                <span>▣</span>
+                Work Orders
+            </a>
+
+            <a href="equipements.html">
+                <span>⚙</span>
+                Équipements
+            </a>
+
+            <a href="pieces.html">
+                <span>▤</span>
+                Pièces
+            </a>
+
+            <a href="technicien.html">
+                <span>♙</span>
+                Techniciens
+            </a>
+
+            <a href="historique.html" class="active">
+                <span>↺</span>
+                Historique
+            </a>
+
+            <a href="parametres.html">
+                <span>⚙</span>
+                Paramètres
+            </a>
+
+        </nav>
+
+
+        <div class="system-status">
+
+            <span class="status-dot"></span>
+
+            <div>
+                <strong>Système opérationnel</strong>
+                <small>
+                    Dernière synchronisation : maintenant
+                </small>
+            </div>
+
+        </div>
+
+
+        <a
+            href="dashboard.html"
+            class="home-link">
+
+            ← Retour à l'accueil
+
+        </a>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <header class="topbar">
+
+            <div>
+
+                <small>
+                    MAINTENANCE / TRAÇABILITÉ
+                </small>
+
+                <h1>
+                    Historique
+                </h1>
+
+            </div>
+
+
+            <div class="profile">
+
+                <div class="avatar">
+                    AD
+                </div>
+
+                <div>
+                    <strong>
+                        Administrateur
+                    </strong>
+
+                    <small>
+                        Administration
+                    </small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <section class="content">
+
+            <div class="page-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        JOURNAL DES ACTIVITÉS
+                    </span>
+
+                    <h2>
+                        Historique des opérations
+                    </h2>
+
+                    <p>
+                        Consultez toutes les modifications
+                        réalisées dans le système.
+                    </p>
+
+                </div>
+
+                <button
+                    id="zoomBtn"
+                    class="zoom-btn">
+
+                    ⛶ Agrandir
+
+                </button>
+
+            </div>
+
+
+            <!-- STATISTIQUES -->
+
+            <div class="stats">
+
+                <div class="stat-card">
+
+                    <span>
+                        Total activités
+                    </span>
+
+                    <strong id="totalActions">
+                        0
+                    </strong>
+
+                    <small>
+                        Actions enregistrées
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Aujourd'hui
+                    </span>
+
+                    <strong id="todayActions">
+                        0
+                    </strong>
+
+                    <small>
+                        Activités du jour
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Créations
+                    </span>
+
+                    <strong id="createActions">
+                        0
+                    </strong>
+
+                    <small>
+                        Nouveaux enregistrements
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Modifications
+                    </span>
+
+                    <strong id="updateActions">
+                        0
+                    </strong>
+
+                    <small>
+                        Données modifiées
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECHERCHE -->
+
+            <div class="search-card">
+
+                <div class="search-title">
+
+                    <strong>
+                        Rechercher dans l'historique
+                    </strong>
+
+                    <span>
+                        Utilisateur, action, catégorie,
+                        enregistrement ou commentaire
+                    </span>
+
+                </div>
+
+
+                <div class="search-row">
+
+                    <input
+                        id="searchInput"
+                        type="search"
+                        placeholder="Ex. Jean Mba, Work Order, modification...">
+
+                    <button
+                        id="searchBtn"
+                        class="btn primary">
+
+                        ⌕ Rechercher
+
+                    </button>
+
+                    <button
+                        id="clearBtn"
+                        class="btn light">
+
+                        Effacer
+
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="searchResults"
+                    class="search-results">
+                </div>
+
+            </div>
+
+
+            <!-- FILTRES -->
+
+            <div class="toolbar">
+
+                <div>
+
+                    <button
+                        class="filter active"
+                        data-filter="all">
+
+                        Toutes
+
+                    </button>
+
+                    <button
+                        class="filter"
+                        data-filter="creation">
+
+                        Créations
+
+                    </button>
+
+                    <button
+                        class="filter"
+                        data-filter="modification">
+
+                        Modifications
+
+                    </button>
+
+                    <button
+                        class="filter"
+                        data-filter="suppression">
+
+                        Suppressions
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- TABLE -->
+
+            <div class="card table-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            TRAÇABILITÉ
+                        </span>
+
+                        <h3>
+                            Journal des activités
+                        </h3>
+
+                    </div>
+
+
+                    <span
+                        id="tableCount"
+                        class="count">
+
+                        0 activité
+
+                    </span>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Date</th>
+
+                                <th>Utilisateur</th>
+
+                                <th>Action</th>
+
+                                <th>Catégorie</th>
+
+                                <th>Enregistrement</th>
+
+                                <th>Commentaire</th>
+
+                                <th>Détails</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="historyTable"></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- DETAILS -->
+
+<div
+    id="detailsModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            data-close="detailsModal">
+
+            ×
+
+        </button>
+
+        <span class="eyebrow">
+            DÉTAIL DE L'ACTION
+        </span>
+
+        <h2 id="detailTitle">
+            Historique
+        </h2>
+
+        <div
+            id="detailContent"
+            class="detail-grid">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ZOOM -->
+
+<div
+    id="zoomModal"
+    class="modal">
+
+    <div class="modal-box zoom-box">
+
+        <button
+            class="close"
+            data-close="zoomModal">
+
+            ×
+
+        </button>
+
+        <h2>
+            Historique complet
+        </h2>
+
+        <div
+            id="zoomContent">
+        </div>
+
+    </div>
+
+</div>
+
+
+<script src="../js/historique.js"></script>
+
+</body>
+</html>

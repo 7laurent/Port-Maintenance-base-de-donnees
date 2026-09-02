@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>OMP Maintenance - Dashboard</title>
+
+    <link rel="stylesheet"
+          href="../css/dashboard.css">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     SIDEBAR
+     ===================================== -->
+
+<aside class="sidebar" id="sidebar">
+
+
+    <div class="sidebar-logo">
+
+        <img
+            src="images/pl.png"
+            alt="Owendo Mineral Port"
+        >
+
+    </div>
+
+
+    <div class="sidebar-title">
+
+        OMP MAINTENANCE
+
+    </div>
+
+
+    <!-- NAVIGATION -->
+
+    <nav class="sidebar-nav">
+
+
+        <a href="dashboard.html"
+           class="nav-link active">
+
+            <span class="nav-icon">⌂</span>
+
+            <span>Dashboard</span>
+
+        </a>
+
+
+        <a href="pannes.html"
+           class="nav-link">
+
+            <span class="nav-icon">⚠</span>
+
+            <span>Pannes</span>
+
+        </a>
+
+
+        <a href="workorder.html"
+           class="nav-link">
+
+            <span class="nav-icon">▣</span>
+
+            <span>Work Orders</span>
+
+        </a>
+
+
+        <a href="equipements.html"
+           class="nav-link">
+
+            <span class="nav-icon">⚙</span>
+
+            <span>Équipements</span>
+
+        </a>
+
+
+        <a href="pieces.html"
+           class="nav-link">
+
+            <span class="nav-icon">◆</span>
+
+            <span>Pièces</span>
+
+        </a>
+
+
+        <a href="technicien.html"
+           class="nav-link">
+
+            <span class="nav-icon">♙</span>
+
+            <span>Techniciens</span>
+
+        </a>
+
+
+        <a href="historique.html"
+           class="nav-link">
+
+            <span class="nav-icon">◷</span>
+
+            <span>Historique</span>
+
+        </a>
+
+
+        <div class="nav-separator"></div>
+
+
+        <a href="parametres.html"
+           class="nav-link">
+
+            <span class="nav-icon">⚙</span>
+
+            <span>Paramètres</span>
+
+        </a>
+
+
+    </nav>
+
+
+    <!-- BAS SIDEBAR -->
+
+    <div class="sidebar-bottom">
+
+        <div class="system-status">
+
+            <span class="status-dot"></span>
+
+            <div>
+
+                <strong>Système opérationnel</strong>
+
+                <small>Dernière synchronisation : maintenant</small>
+
+            </div>
+
+        </div>
+
+
+        <a href="accueil.html"
+           class="logout-link">
+
+            ← Retour à l'accueil
+
+        </a>
+
+    </div>
+
+
+</aside>
+
+
+
+<!-- =====================================
+     CONTENU PRINCIPAL
+     ===================================== -->
+
+<main class="main-content">
+
+
+    <!-- HEADER -->
+
+    <header class="topbar">
+
+
+        <button
+            class="menu-button"
+            id="menuButton"
+        >
+            ☰
+        </button>
+
+
+        <div class="breadcrumb">
+
+            <span>OMP Maintenance</span>
+
+            <strong>/</strong>
+
+            <span>Dashboard</span>
+
+        </div>
+
+
+        <div class="topbar-right">
+
+
+            <button class="notification-button">
+
+                ♢
+
+                <span class="notification-dot"></span>
+
+            </button>
+
+
+            <div class="user-profile">
+
+                <div class="user-avatar">
+                    AD
+                </div>
+
+                <div class="user-info">
+
+                    <strong>
+                        Administrateur
+                    </strong>
+
+                    <span>
+                        Administration
+                    </span>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =====================================
+         DASHBOARD
+         ===================================== -->
+
+    <div class="dashboard-container">
+
+
+        <!-- INTRODUCTION -->
+
+        <section class="dashboard-intro">
+
+
+            <div>
+
+                <span class="section-label">
+                    VUE D'ENSEMBLE
+                </span>
+
+
+                <h1>
+                    Dashboard
+                </h1>
+
+
+                <p>
+                    Visualisez l'état global de vos
+                    opérations de maintenance.
+                </p>
+
+            </div>
+
+
+            <div class="date-box">
+
+                <span>
+                    Aujourd'hui
+                </span>
+
+                <strong id="currentDate">
+                    --
+                </strong>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             KPI
+             ================================= -->
+
+        <section class="kpi-grid">
+
+
+            <!-- Équipements -->
+
+            <article class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span class="kpi-label">
+                        ÉQUIPEMENTS
+                    </span>
+
+                    <div class="kpi-icon blue">
+                        ⚙
+                    </div>
+
+                </div>
+
+
+                <strong
+                    class="kpi-number"
+                    id="equipmentCount"
+                >
+                    0
+                </strong>
+
+
+                <div class="kpi-footer">
+
+                    <span class="positive">
+                        ↑ 8%
+                    </span>
+
+                    <span>
+                        ce mois
+                    </span>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- Pannes -->
+
+            <article class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span class="kpi-label">
+                        PANNES
+                    </span>
+
+                    <div class="kpi-icon orange">
+                        ⚠
+                    </div>
+
+                </div>
+
+
+                <strong
+                    class="kpi-number"
+                    id="failureCount"
+                >
+                    0
+                </strong>
+
+
+                <div class="kpi-footer">
+
+                    <span class="negative">
+                        ↑ 4%
+                    </span>
+
+                    <span>
+                        ce mois
+                    </span>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- Work Orders -->
+
+            <article class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span class="kpi-label">
+                        WORK ORDERS
+                    </span>
+
+                    <div class="kpi-icon green">
+                        ✓
+                    </div>
+
+                </div>
+
+
+                <strong
+                    class="kpi-number"
+                    id="workOrderCount"
+                >
+                    0
+                </strong>
+
+
+                <div class="kpi-footer">
+
+                    <span class="positive">
+                        ↑ 12%
+                    </span>
+
+                    <span>
+                        ce mois
+                    </span>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- Techniciens -->
+
+            <article class="kpi-card">
+
+                <div class="kpi-top">
+
+                    <span class="kpi-label">
+                        TECHNICIENS
+                    </span>
+
+                    <div class="kpi-icon purple">
+                        ♙
+                    </div>
+
+                </div>
+
+
+                <strong
+                    class="kpi-number"
+                    id="technicianCount"
+                >
+                    0
+                </strong>
+
+
+                <div class="kpi-footer">
+
+                    <span class="positive">
+                        Actifs
+                    </span>
+
+                    <span>
+                        actuellement
+                    </span>
+
+                </div>
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             GRAPHIQUES
+             ================================= -->
+
+        <section class="analytics-grid">
+
+
+            <!-- ACTIVITÉ -->
+
+            <article class="panel activity-panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-label">
+                            ANALYSE
+                        </span>
+
+                        <h2>
+                            Activité de maintenance
+                        </h2>
+
+                    </div>
+
+
+                    <select id="periodSelect">
+
+                        <option value="6">
+                            6 derniers mois
+                        </option>
+
+                        <option value="12">
+                            12 derniers mois
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="chart-container">
+
+                    <div class="chart-y">
+
+                        <span>100</span>
+                        <span>75</span>
+                        <span>50</span>
+                        <span>25</span>
+                        <span>0</span>
+
+                    </div>
+
+
+                    <div class="bar-chart"
+                         id="activityChart">
+
+                    </div>
+
+                </div>
+
+
+            </article>
+
+
+
+            <!-- RÉPARTITION -->
+
+            <article class="panel distribution-panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-label">
+                            RÉPARTITION
+                        </span>
+
+                        <h2>
+                            État des équipements
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="donut-container">
+
+
+                    <div class="donut">
+
+                        <div class="donut-center">
+
+                            <strong>
+                                100%
+                            </strong>
+
+                            <span>
+                                équipements
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="legend">
+
+
+                        <div class="legend-item">
+
+                            <span class="legend-color operational"></span>
+
+                            <span>
+                                Opérationnels
+                            </span>
+
+                            <strong>
+                                72%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="legend-item">
+
+                            <span class="legend-color maintenance"></span>
+
+                            <span>
+                                En maintenance
+                            </span>
+
+                            <strong>
+                                18%
+                            </strong>
+
+                        </div>
+
+
+                        <div class="legend-item">
+
+                            <span class="legend-color panne"></span>
+
+                            <span>
+                                En panne
+                            </span>
+
+                            <strong>
+                                10%
+                            </strong>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             WORK ORDERS + ACTIVITÉS
+             ================================= -->
+
+        <section class="bottom-grid">
+
+
+            <!-- WORK ORDERS -->
+
+            <article class="panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-label">
+                            INTERVENTIONS
+                        </span>
+
+                        <h2>
+                            Work Orders récents
+                        </h2>
+
+                    </div>
+
+
+                    <a
+                        href="pages/work-order.html"
+                        class="view-all"
+                    >
+                        Voir tout →
+                    </a>
+
+                </div>
+
+
+                <div class="work-orders">
+
+
+                    <div class="work-order">
+
+                        <div class="wo-number">
+                            WO-001
+                        </div>
+
+                        <div class="wo-info">
+
+                            <strong>
+                                Maintenance convoyeur
+                            </strong>
+
+                            <span>
+                                Convoyeur principal
+                            </span>
+
+                        </div>
+
+                        <span class="status progress">
+                            En cours
+                        </span>
+
+                    </div>
+
+
+                    <div class="work-order">
+
+                        <div class="wo-number">
+                            WO-002
+                        </div>
+
+                        <div class="wo-info">
+
+                            <strong>
+                                Inspection équipement
+                            </strong>
+
+                            <span>
+                                Zone portuaire
+                            </span>
+
+                        </div>
+
+                        <span class="status completed">
+                            Terminé
+                        </span>
+
+                    </div>
+
+
+                    <div class="work-order">
+
+                        <div class="wo-number">
+                            WO-003
+                        </div>
+
+                        <div class="wo-info">
+
+                            <strong>
+                                Réparation moteur
+                            </strong>
+
+                            <span>
+                                Atelier maintenance
+                            </span>
+
+                        </div>
+
+                        <span class="status waiting">
+                            En attente
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ACTIVITÉ RÉCENTE -->
+
+            <article class="panel">
+
+
+                <div class="panel-header">
+
+                    <div>
+
+                        <span class="panel-label">
+                            JOURNAL
+                        </span>
+
+                        <h2>
+                            Activité récente
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="timeline">
+
+
+                    <div class="timeline-item">
+
+                        <span class="timeline-dot orange-dot"></span>
+
+                        <div>
+
+                            <strong>
+                                Nouvelle panne enregistrée
+                            </strong>
+
+                            <span>
+                                Il y a 15 minutes
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <span class="timeline-dot blue-dot"></span>
+
+                        <div>
+
+                            <strong>
+                                Work Order créé
+                            </strong>
+
+                            <span>
+                                Il y a 42 minutes
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <span class="timeline-dot green-dot"></span>
+
+                        <div>
+
+                            <strong>
+                                Intervention terminée
+                            </strong>
+
+                            <span>
+                                Il y a 1 heure
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="timeline-item">
+
+                        <span class="timeline-dot purple-dot"></span>
+
+                        <div>
+
+                            <strong>
+                                Équipement ajouté
+                            </strong>
+
+                            <span>
+                                Il y a 2 heures
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+            </article>
+
+
+        </section>
+
+
+
+        <!-- =================================
+             ACCÈS RAPIDES
+             ================================= -->
+
+        <section class="quick-section">
+
+
+            <div class="section-title-small">
+
+                <span>
+                    ACCÈS RAPIDES
+                </span>
+
+                <h2>
+                    Gestion de la maintenance
+                </h2>
+
+            </div>
+
+
+            <div class="quick-grid">
+
+
+                <a
+                    href="pannes.html"
+                    class="quick-card"
+                >
+
+                    <span class="quick-icon">
+                        ⚠
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Déclarer une panne
+                        </strong>
+
+                        <span>
+                            Enregistrer un nouvel incident
+                        </span>
+
+                    </div>
+
+                    <span class="quick-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="workorder.html"
+                    class="quick-card"
+                >
+
+                    <span class="quick-icon">
+                        +
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Créer un Work Order
+                        </strong>
+
+                        <span>
+                            Planifier une intervention
+                        </span>
+
+                    </div>
+
+                    <span class="quick-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+                <a
+                    href="equipements.html"
+                    class="quick-card"
+                >
+
+                    <span class="quick-icon">
+                        ⚙
+                    </span>
+
+                    <div>
+
+                        <strong>
+                            Équipements
+                        </strong>
+
+                        <span>
+                            Consulter le parc
+                        </span>
+
+                    </div>
+
+                    <span class="quick-arrow">
+                        →
+                    </span>
+
+                </a>
+
+
+            </div>
+
+        </section>
+
+
+    </div>
+
+
+</main>
+
+
+<script src="js/dashboard.js"></script>
+
+</body>
+
+</html>

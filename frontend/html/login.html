@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        OMP Maintenance - Connexion
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="../css/login.css">
+
+</head>
+
+
+<body>
+
+<div class="login-page">
+
+
+    <!-- ================= PARTIE GAUCHE ================= -->
+
+    <section class="login-visual">
+
+        <div class="visual-content">
+
+            <img
+                src="../images/pl.png"
+                alt="Logo OMP">
+
+            <span>
+                OMP MAINTENANCE
+            </span>
+
+            <h1>
+
+                Centraliser.<br>
+                Analyser.<br>
+                Maintenir.
+
+            </h1>
+
+            <p>
+
+                Plateforme de gestion et de
+                centralisation des opérations
+                de maintenance.
+
+            </p>
+
+            <div class="orange-line"></div>
+
+            <small>
+                OWENDO MINERAL PORT
+            </small>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= PARTIE DROITE ================= -->
+
+    <section class="login-panel">
+
+        <div class="login-card">
+
+
+            <!-- LOGO MOBILE -->
+
+            <div class="mobile-logo">
+
+                <img
+                    src="../images/pl.png"
+                    alt="Logo OMP">
+
+            </div>
+
+
+            <span class="eyebrow">
+
+                ESPACE DE GESTION
+
+            </span>
+
+
+            <h2>
+                Bienvenue
+            </h2>
+
+
+            <p class="intro">
+
+                Connectez-vous à votre espace
+                OMP Maintenance.
+
+            </p>
+
+
+            <!-- ================= FORMULAIRE ================= -->
+
+            <form id="loginForm">
+
+
+                <!-- EMAIL -->
+
+                <label>
+
+                    Adresse e-mail
+
+                    <input
+                        id="email"
+                        type="email"
+                        placeholder="administrateur@omp.ga"
+                        required>
+
+                </label>
+
+
+                <!-- MOT DE PASSE -->
+
+                <label>
+
+                    Mot de passe
+
+                    <div class="password-container">
+
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="Votre mot de passe"
+                            required>
+
+                        <button
+                            type="button"
+                            id="togglePassword">
+
+                            Afficher
+
+                        </button>
+
+                    </div>
+
+                </label>
+
+
+                <!-- OPTIONS -->
+
+                <div class="options">
+
+                    <label class="remember">
+
+                        <input
+                            id="remember"
+                            type="checkbox">
+
+                        Se souvenir de moi
+
+                    </label>
+
+
+                    <button
+                        type="button"
+                        id="forgot"
+                        class="forgot">
+
+                        Mot de passe oublié ?
+
+                    </button>
+
+                </div>
+
+
+                <!-- MESSAGE -->
+
+                <div
+                    id="message"
+                    class="message">
+                </div>
+
+
+                <!-- CONNEXION -->
+
+                <button
+                    type="submit"
+                    class="login-button">
+
+                    Se connecter
+
+                    <span>
+                        →
+                    </span>
+
+                </button>
+
+
+            </form>
+
+
+            <div class="demo-note">
+
+                Mode démonstration :
+                la connexion redirige vers
+                le Dashboard.
+
+            </div>
+
+
+            <a
+                href="dashboard.html"
+                class="direct-link">
+
+                Accéder directement au Dashboard
+
+            </a>
+
+        </div>
+
+    </section>
+
+</div>
+
+
+<script src="../js/login.js"></script>
+
+</body>
+
+</html>

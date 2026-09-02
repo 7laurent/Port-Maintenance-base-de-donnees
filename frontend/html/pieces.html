@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OMP Maintenance - Pièces</title>
+
+    <link rel="stylesheet" href="../css/pieces.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <img src="../images/pl.png" alt="Logo OMP">
+
+            <div>
+                <strong>OMP</strong>
+                <span>Maintenance</span>
+            </div>
+        </div>
+
+        <nav class="nav">
+
+            <a href="dashboard.html">
+                <span>⌂</span>
+                Dashboard
+            </a>
+
+            <a href="pannes.html">
+                <span>⚠</span>
+                Pannes
+            </a>
+
+            <a href="workorder.html">
+                <span>▣</span>
+                Work Orders
+            </a>
+
+            <a href="equipements.html">
+                <span>⚙</span>
+                Équipements
+            </a>
+
+            <a href="pieces.html" class="active">
+                <span>▤</span>
+                Pièces
+            </a>
+
+            <a href="technicien.html">
+                <span>♙</span>
+                Techniciens
+            </a>
+
+            <a href="historique.html">
+                <span>↺</span>
+                Historique
+            </a>
+
+            <a href="parametres.html">
+                <span>⚙</span>
+                Paramètres
+            </a>
+
+        </nav>
+
+        <div class="system-status">
+
+            <div class="status-dot"></div>
+
+            <div>
+                <strong>Système opérationnel</strong>
+                <small>Dernière synchronisation : maintenant</small>
+            </div>
+
+        </div>
+
+        <a href="dashboard.html" class="home-link">
+            ← Retour à l'accueil
+        </a>
+
+    </aside>
+
+
+    <!-- ================= MAIN ================= -->
+
+    <main class="main">
+
+        <!-- TOPBAR -->
+
+        <header class="topbar">
+
+            <div>
+                <small>MAINTENANCE / STOCK</small>
+                <h1>Pièces</h1>
+            </div>
+
+            <div class="profile">
+
+                <div class="avatar">
+                    AD
+                </div>
+
+                <div>
+                    <strong>Administrateur</strong>
+                    <small>Administration</small>
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <!-- CONTENT -->
+
+        <section class="content">
+
+            <!-- HEADER -->
+
+            <div class="page-header">
+
+                <div>
+
+                    <span class="eyebrow">
+                        GESTION DU STOCK
+                    </span>
+
+                    <h2>
+                        Pièces de maintenance
+                    </h2>
+
+                    <p>
+                        Gérez les pièces utilisées pour les opérations
+                        de maintenance.
+                    </p>
+
+                </div>
+
+
+                <div class="header-buttons">
+
+                    <button
+                        id="historyBtn"
+                        class="btn btn-secondary">
+                        ↺ Historique
+                    </button>
+
+                    <button
+                        id="addBtn"
+                        class="btn btn-primary">
+                        ＋ Nouvelle pièce
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= STATISTIQUES ================= -->
+
+            <div class="stats">
+
+                <div class="stat-card">
+
+                    <span>
+                        Total références
+                    </span>
+
+                    <strong id="totalPieces">
+                        0
+                    </strong>
+
+                    <small>
+                        Références enregistrées
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Stock disponible
+                    </span>
+
+                    <strong id="stockPieces">
+                        0
+                    </strong>
+
+                    <small>
+                        Unités disponibles
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Stock faible
+                    </span>
+
+                    <strong id="lowPieces">
+                        0
+                    </strong>
+
+                    <small>
+                        À réapprovisionner
+                    </small>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span>
+                        Valeur du stock
+                    </span>
+
+                    <strong id="stockValue">
+                        0 FCFA
+                    </strong>
+
+                    <small>
+                        Valeur estimée
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= RECHERCHE ================= -->
+
+            <div class="search-card">
+
+                <div class="search-title">
+
+                    <strong>
+                        Rechercher une pièce
+                    </strong>
+
+                    <span>
+                        Référence, nom, catégorie,
+                        fournisseur ou emplacement
+                    </span>
+
+                </div>
+
+
+                <div class="search-row">
+
+                    <input
+                        type="search"
+                        id="searchInput"
+                        placeholder="Ex. FIL-001, filtre, Caterpillar...">
+
+                    <button
+                        id="searchBtn"
+                        class="btn btn-primary">
+                        ⌕ Rechercher
+                    </button>
+
+                    <button
+                        id="clearBtn"
+                        class="btn btn-light">
+                        Effacer
+                    </button>
+
+                </div>
+
+
+                <!-- Résultats -->
+
+                <div
+                    id="searchResults"
+                    class="search-results">
+                </div>
+
+            </div>
+
+
+            <!-- ================= FILTRES ================= -->
+
+            <div class="toolbar">
+
+                <div>
+
+                    <button
+                        class="filter active"
+                        data-filter="all">
+                        Toutes
+                    </button>
+
+                    <button
+                        class="filter"
+                        data-filter="low">
+                        Stock faible
+                    </button>
+
+                    <button
+                        class="filter"
+                        data-filter="out">
+                        Rupture
+                    </button>
+
+                </div>
+
+
+                <button
+                    id="zoomTableBtn"
+                    class="zoom-btn">
+                    ⛶ Agrandir la liste
+                </button>
+
+            </div>
+
+
+            <!-- ================= GRAPHIQUES ================= -->
+
+            <div class="dashboard-grid">
+
+                <!-- GRAPH -->
+
+                <div class="card chart-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                ANALYSE
+                            </span>
+
+                            <h3>
+                                Utilisation des pièces
+                            </h3>
+
+                        </div>
+
+                        <button
+                            id="zoomChartBtn"
+                            class="zoom-btn">
+                            ⛶ Zoom
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="usageChart"
+                        class="bars">
+                    </div>
+
+
+                    <div class="legend">
+
+                        <span>
+                            <i class="legend-used"></i>
+                            Utilisées
+                        </span>
+
+                        <span>
+                            <i class="legend-bought"></i>
+                            Achetées
+                        </span>
+
+                        <span>
+                            <i class="legend-broken"></i>
+                            Cassées
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- ETAT DU STOCK -->
+
+                <div class="card status-card">
+
+                    <div class="card-header">
+
+                        <div>
+
+                            <span class="eyebrow">
+                                STOCK
+                            </span>
+
+                            <h3>
+                                État du stock
+                            </h3>
+
+                        </div>
+
+                        <button
+                            id="zoomStatusBtn"
+                            class="zoom-btn">
+                            ⛶ Zoom
+                        </button>
+
+                    </div>
+
+
+                    <div
+                        id="donut"
+                        class="donut">
+
+                        <div>
+
+                            <strong id="stockPercent">
+                                0%
+                            </strong>
+
+                            <small>
+                                disponible
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="status-list">
+
+                        <span>
+                            <i class="available"></i>
+                            Disponible
+                            <b id="availableCount">0</b>
+                        </span>
+
+                        <span>
+                            <i class="low"></i>
+                            Stock faible
+                            <b id="lowCount">0</b>
+                        </span>
+
+                        <span>
+                            <i class="out"></i>
+                            Rupture
+                            <b id="outCount">0</b>
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= TABLEAU ================= -->
+
+            <div class="card table-card">
+
+                <div class="card-header">
+
+                    <div>
+
+                        <span class="eyebrow">
+                            INVENTAIRE
+                        </span>
+
+                        <h3>
+                            Liste des pièces
+                        </h3>
+
+                    </div>
+
+                    <span
+                        id="tableCount"
+                        class="count">
+                        0 pièce
+                    </span>
+
+                </div>
+
+
+                <div class="table-container">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Référence</th>
+                                <th>Pièce</th>
+                                <th>Catégorie</th>
+                                <th>Fournisseur</th>
+                                <th>Stock</th>
+                                <th>Emplacement</th>
+                                <th>Prix unitaire</th>
+                                <th>Actions</th>
+
+                            </tr>
+
+                        </thead>
+
+
+                        <tbody id="piecesTable">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+<!-- ================= MODAL AJOUT ================= -->
+
+<div
+    id="pieceModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            data-close="pieceModal">
+            ×
+        </button>
+
+        <span class="eyebrow">
+            NOUVELLE PIÈCE
+        </span>
+
+        <h2>
+            Ajouter une pièce
+        </h2>
+
+
+        <form id="pieceForm">
+
+            <div class="form-grid">
+
+                <label>
+                    Référence
+                    <input
+                        name="reference"
+                        required
+                        placeholder="FIL-001">
+                </label>
+
+
+                <label>
+                    Nom de la pièce
+                    <input
+                        name="name"
+                        required
+                        placeholder="Filtre à huile">
+                </label>
+
+
+                <label>
+                    Catégorie
+
+                    <select name="category">
+
+                        <option>Moteur</option>
+                        <option>Freinage</option>
+                        <option>Hydraulique</option>
+                        <option>Électricité</option>
+                        <option>Transmission</option>
+                        <option>Autre</option>
+
+                    </select>
+
+                </label>
+
+
+                <label>
+                    Fabricant
+                    <input
+                        name="manufacturer"
+                        placeholder="Caterpillar">
+                </label>
+
+
+                <label>
+                    Fournisseur
+                    <input
+                        name="supplier"
+                        placeholder="Fournisseur">
+                </label>
+
+
+                <label>
+                    Quantité
+                    <input
+                        name="quantity"
+                        type="number"
+                        min="0"
+                        required>
+                </label>
+
+
+                <label>
+                    Stock minimum
+                    <input
+                        name="minStock"
+                        type="number"
+                        min="0"
+                        value="5">
+                </label>
+
+
+                <label>
+                    Unité
+                    <input
+                        name="unit"
+                        value="unité">
+                </label>
+
+
+                <label>
+                    Emplacement
+                    <input
+                        name="location"
+                        placeholder="Magasin A - Rayon 2">
+                </label>
+
+
+                <label>
+                    Prix unitaire
+                    <input
+                        name="unitPrice"
+                        type="number"
+                        min="0"
+                        value="0">
+                </label>
+
+
+                <label>
+                    Dernier achat
+                    <input
+                        name="lastPurchase"
+                        type="date">
+                </label>
+
+
+                <label>
+                    Compatible avec
+                    <input
+                        name="compatible"
+                        placeholder="CAT-01, CAT-02">
+                </label>
+
+            </div>
+
+
+            <label class="full-field">
+
+                Description
+
+                <textarea
+                    name="description"
+                    rows="4"
+                    placeholder="Informations complémentaires">
+                </textarea>
+
+            </label>
+
+
+            <div class="modal-actions">
+
+                <button
+                    type="button"
+                    class="btn btn-light"
+                    data-close="pieceModal">
+                    Annuler
+                </button>
+
+                <button
+                    type="submit"
+                    class="btn btn-primary">
+                    Enregistrer
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MODAL DETAILS ================= -->
+
+<div
+    id="detailsModal"
+    class="modal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            data-close="detailsModal">
+            ×
+        </button>
+
+        <span class="eyebrow">
+            DÉTAILS
+        </span>
+
+        <h2 id="detailTitle">
+            Pièce
+        </h2>
+
+        <div
+            id="detailContent"
+            class="detail-grid">
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= MODAL ZOOM ================= -->
+
+<div
+    id="zoomModal"
+    class="modal">
+
+    <div class="modal-box zoom-box">
+
+        <button
+            class="close"
+            data-close="zoomModal">
+            ×
+        </button>
+
+        <h2 id="zoomTitle">
+            Vue agrandie
+        </h2>
+
+        <div id="zoomContent"></div>
+
+    </div>
+
+</div>
+
+
+<script src="../js/pieces.js"></script>
+
+</body>
+</html>
